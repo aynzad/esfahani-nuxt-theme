@@ -1,5 +1,6 @@
 export default {
-  mode: 'spa',
+  mode: 'universal',
+  target: 'static',
   head: {
     title: 'Alireza Esfahani',
     meta: [

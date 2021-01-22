@@ -6,11 +6,12 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types';
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
 import { apiUrl } from '~/utils/config';
 export default {
-  async asyncData({ params, redirect }) {
+  async asyncData({ params, redirect }: Context) {
     const api = await Prismic.getApi(apiUrl);
     const article = await api.getByUID('articles', params.id);
     if (article) {
