@@ -2,23 +2,33 @@
   <div class="container">
     <div>
       <logo />
-      <h1 class="title">Alireza Esfahani</h1>
-      <h2 class="subtitle">Front-end developer</h2>
+      <h1 class="title">{{ $t('alirezaEsfahani') }}</h1>
+      <h2 class="subtitle">{{ $t('frontendDeveloper') }}</h2>
       <div class="links">
-        <NuxtLink to="/articles">Articles</NuxtLink>
+        <NuxtLink :to="localePath('/articles')">{{ $t('articles') }}</NuxtLink>
+        <nuxt-link :to="switchLocalePath(switchLocaleTo)">
+          {{ $t('switchLocale') }}
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import Logo from '~/components/Logo.vue';
 
-export default {
+export default Vue.extend({
   components: {
     Logo,
   },
-};
+  computed: {
+    switchLocaleTo(): 'fa' | 'en' {
+      const thisLocale = this.$i18n.locale;
+      return thisLocale === 'fa' ? 'en' : 'fa';
+    },
+  },
+});
 </script>
 
 <style>

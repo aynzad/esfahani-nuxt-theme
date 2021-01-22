@@ -6,14 +6,19 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import { Context } from '@nuxt/types';
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
 import { apiUrl } from '~/utils/config';
-export default {
-  async asyncData({ params, redirect }: Context) {
+
+export default Vue.extend({
+  async asyncData({ app, params, redirect }: Context) {
+    const lang = app.i18n.locale === 'en' ? 'en-us' : 'fa-ir';
     const api = await Prismic.getApi(apiUrl);
-    const article = await api.getByUID('articles', params.id);
+    const article = await api.getByUID('articles', params.id, {
+      lang,
+    });
     if (article) {
       const header = PrismicDom.RichText.asText(article.data.article_title);
       const content = PrismicDom.RichText.asText(article.data.article_content);
@@ -23,10 +28,10 @@ export default {
         content,
       };
     } else {
-      redirect('/');
+      redirect(app.i18n.locale === 'en' ? '/' : '/fa');
     }
   },
-};
+});
 </script>
 
 <style scoped>

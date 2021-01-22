@@ -5,16 +5,16 @@
   "author": "Alireza Esfahani <aynzad@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
-    "build": "nuxt-ts build",
-    "generate": "nuxt-ts generate",
-    "start": "nuxt-ts start",
-    "lint": "npx eslint --ext .ts,.js,.vue ."
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start",
+    "lint": "eslint --ext .ts,.js,.vue ."
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^2.0.1",
     "eslint": "^7.18.0",
     "nuxt": "^2.0.0",
+    "nuxt-i18n": "^6.18.0",
     "prettier": "^2.2.1",
     "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2"

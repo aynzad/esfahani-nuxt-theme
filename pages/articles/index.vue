@@ -1,24 +1,29 @@
 <template>
   <div>
     <section v-for="article in articles" :key="article.uid" class="articles">
-      <NuxtLink :to="{ name: 'articles-id', params: { id: article.uid } }">
-        {{ getTitle(article) }} : {{ article.uid }}
+      <NuxtLink
+        :to="localePath({ name: 'articles-id', params: { id: article.uid } })"
+      >
+        {{ getTitle(article) }}
       </NuxtLink>
     </section>
   </div>
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import Prismic from 'prismic-javascript';
-import { Document } from 'prismic-javascript/types/documents';
 import PrismicDom from 'prismic-dom';
+import { Document } from 'prismic-javascript/types/documents';
 import { apiUrl } from '~/utils/config';
-export default {
-  async asyncData() {
+
+export default Vue.extend({
+  async asyncData({ app }) {
+    const lang = app.i18n.locale === 'en' ? 'en-us' : 'fa-ir';
     const api = await Prismic.getApi(apiUrl);
     const results = await api.query(
       Prismic.Predicates.at('document.type', 'articles'),
-      { lang: 'en-us' }
+      { lang }
     );
     const articles = results.results;
     return {
@@ -30,7 +35,7 @@ export default {
       return PrismicDom.RichText.asText(article.data.article_title);
     },
   },
-};
+});
 </script>
 
 <style scoped>
