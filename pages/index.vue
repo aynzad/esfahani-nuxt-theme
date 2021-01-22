@@ -5,13 +5,13 @@
       <h1 class="title">Alireza Esfahani</h1>
       <h2 class="subtitle">Front-end developer</h2>
       <div class="links">
-        <NuxtLink to="/articles">Article</NuxtLink>
+        <NuxtLink to="/articles">Articles</NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Logo from '~/components/Logo.vue';
 
 export default {

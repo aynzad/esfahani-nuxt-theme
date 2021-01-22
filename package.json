@@ -23,6 +23,7 @@
     "@nuxt/types": "^2.14.12",
     "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
+    "@types/prismic-dom": "^2.1.1",
     "nodemon": "^1.18.9"
   }
 }

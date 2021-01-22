@@ -5,26 +5,25 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
-import PrismicConfig from './../prismic.config.js';
+import { apiUrl } from '~/utils/config';
 export default {
-  async asyncData() {
-    const api = await Prismic.getApi(PrismicConfig.apiEndpoint);
-    let article = {};
-    const results = await api.query(
-      Prismic.Predicates.at('document.type', 'articles'),
-      { lang: 'en-us' }
-    );
-    article = results.results[0];
-    const header = PrismicDom.RichText.asText(article.data.article_title);
-    const content = PrismicDom.RichText.asText(article.data.article_content);
-    return {
-      article,
-      header,
-      content,
-    };
+  async asyncData({ params, redirect }) {
+    const api = await Prismic.getApi(apiUrl);
+    const article = await api.getByUID('articles', params.id);
+    if (article) {
+      const header = PrismicDom.RichText.asText(article.data.article_title);
+      const content = PrismicDom.RichText.asText(article.data.article_content);
+      return {
+        article,
+        header,
+        content,
+      };
+    } else {
+      redirect('/');
+    }
   },
 };
 </script>
