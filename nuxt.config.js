@@ -1,6 +1,4 @@
 export default {
-  mode: 'universal',
-  target: 'dist',
   head: {
     title: 'Alireza Esfahani',
     meta: [
