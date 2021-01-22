@@ -1,18 +1,27 @@
 {
-  "name": "nuxtjs",
-  "version": "1.0.0",
-  "description": "My astonishing Nuxt.js project",
-  "author": "msweeneydev",
+  "name": "alirezaesfahani",
+  "version": "0.0.1",
+  "description": "My personal website",
+  "author": "Alireza Esfahani <aynzad@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt generate",
-    "start": "nuxt start"
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "generate": "nuxt-ts generate",
+    "start": "nuxt-ts start",
+    "lint": "npx eslint --ext .ts,.js,.vue ."
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "@nuxt/typescript-runtime": "^2.0.1",
+    "eslint": "^7.18.0",
+    "nuxt": "^2.0.0",
+    "prettier": "^2.2.1",
+    "prismic-javascript": "^3.0.2"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.14.12",
+    "@nuxt/typescript-build": "^2.0.4",
+    "@nuxtjs/eslint-config-typescript": "^5.0.0",
     "nodemon": "^1.18.9"
   }
 }

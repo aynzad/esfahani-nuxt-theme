@@ -1,19 +1,12 @@
+/* eslint-disable vue/singleline-html-element-content-newline */
 <template>
   <div class="container">
     <div>
       <logo />
-      <h1 class="title">
-        nuxtjs
-      </h1>
-      <h2 class="subtitle">
-        My astonishing Nuxt.js project
-      </h2>
+      <h1 class="title">nuxtjs</h1>
+      <h2 class="subtitle">My astonishing Nuxt.js project</h2>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
+        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
           Documentation
         </a>
         <a
@@ -29,13 +22,13 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from '~/components/Logo.vue';
 
 export default {
   components: {
-    Logo
-  }
-}
+    Logo,
+  },
+};
 </script>
 
 <style>
