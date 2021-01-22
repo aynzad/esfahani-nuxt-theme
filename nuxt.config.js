@@ -1,5 +1,5 @@
 export default {
-  ssr: true,
+  mode: 'spa',
   head: {
     title: process.env.npm_package_name || '',
     meta: [
