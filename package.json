@@ -16,6 +16,7 @@
     "eslint": "^7.18.0",
     "nuxt": "^2.0.0",
     "prettier": "^2.2.1",
+    "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2"
   },
   "devDependencies": {
