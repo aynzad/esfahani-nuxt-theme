@@ -1,3 +1,4 @@
+import { locales, messages } from './i18n';
 export default {
   head: {
     title: 'Alireza Esfahani',
@@ -50,38 +51,16 @@ export default {
   modules: ['nuxt-i18n'],
   i18n: {
     seo: true,
-    locales: [
-      {
-        code: 'en',
-        iso: 'en-US',
-      },
-      {
-        code: 'fa',
-        iso: 'fa-IR',
-      },
-    ],
+    locales,
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
       detectBrowserLanguage: {
         useCookie: true,
         cookieKey: 'i18n_redirected',
-        onlyOnRoot: true, // recommended
+        onlyOnRoot: true,
       },
-      messages: {
-        en: {
-          alirezaEsfahani: 'Alireza Esfahani',
-          frontendDeveloper: 'Front-end developer',
-          switchLocale: 'فارسی',
-          articles: 'Articles',
-        },
-        fa: {
-          alirezaEsfahani: 'علیرضا اصفهانی',
-          frontendDeveloper: 'توسعه‌دهنده فرانت‌اند',
-          switchLocale: 'English',
-          articles: 'نوشته‌ها',
-        },
-      },
+      messages,
     },
   },
   env: {
