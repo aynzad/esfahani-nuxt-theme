@@ -1,3 +1,4 @@
+const messages = require('./i18n/index.js');
 export default {
   head: {
     title: 'Alireza Esfahani',
@@ -76,40 +77,7 @@ export default {
         cookieKey: 'i18n_redirected',
         onlyOnRoot: true,
       },
-      messages: {
-        en: {
-          logo: 'A',
-          home: {
-            title: 'Alireza Esfahani',
-            subtitle: 'The true story of my life as a',
-            job: 'Front-end developer',
-          },
-          menu: {
-            articles: 'Articles',
-            projects: 'Projects',
-            github: 'Github',
-            about: 'About',
-            contact: 'Contact',
-            switchLocale: 'فارسی',
-          },
-        },
-        fa: {
-          logo: 'ع',
-          home: {
-            title: 'علیرضا اصفهانی',
-            subtitle: 'داستان واقعی زندگی من به عنوان یک',
-            job: 'توسعه‌دهنده فرانت‌اند',
-          },
-          menu: {
-            articles: 'نوشته‌ها',
-            projects: 'پروژه‌ها',
-            github: 'گیت‌هاب',
-            about: 'درباره',
-            contact: 'ارتباط',
-            switchLocale: 'English',
-          },
-        },
-      },
+      messages,
     },
   },
   env: {
