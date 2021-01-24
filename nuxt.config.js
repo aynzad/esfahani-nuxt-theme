@@ -36,9 +36,17 @@ export default {
         sizes: '16x16',
         href: '/favicon-16x16.png',
       },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200..700',
+      },
     ],
   },
-
   loading: { color: '#C62641' },
   buildModules: ['@nuxt/typescript-build'],
   typescript: {
