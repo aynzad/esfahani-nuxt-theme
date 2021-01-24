@@ -1,4 +1,5 @@
-const messages = require('./i18n/index.js');
+const enMessage = require('./i18n/en');
+const faMessage = require('./i18n/en');
 export default {
   head: {
     title: 'Alireza Esfahani',
@@ -77,7 +78,10 @@ export default {
         cookieKey: 'i18n_redirected',
         onlyOnRoot: true,
       },
-      messages,
+      messages: {
+        en: enMessage,
+        fa: faMessage
+      },
     },
   },
   env: {

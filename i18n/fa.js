@@ -1,4 +1,4 @@
-const messages = {
+module.exports = {
   logo: 'ع',
   home: {
     title: 'علیرضا اصفهانی',
@@ -14,5 +14,3 @@ const messages = {
     switchLocale: 'English',
   },
 };
-
-export default messages;
