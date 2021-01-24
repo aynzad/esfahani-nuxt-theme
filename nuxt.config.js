@@ -1,5 +1,3 @@
-const enMessage = require('./i18n/en');
-const faMessage = require('./i18n/en');
 export default {
   head: {
     title: 'Alireza Esfahani',
@@ -64,12 +62,16 @@ export default {
       {
         code: 'en',
         iso: 'en-US',
+        file: 'en.json',
       },
       {
         code: 'fa',
         iso: 'fa-IR',
+        file: 'fa.json',
       },
     ],
+    lazy: true,
+    langDir: 'lang/',
     defaultLocale: 'en',
     vueI18n: {
       fallbackLocale: 'en',
@@ -77,10 +79,6 @@ export default {
         useCookie: true,
         cookieKey: 'i18n_redirected',
         onlyOnRoot: true,
-      },
-      messages: {
-        en: enMessage,
-        fa: faMessage
       },
     },
   },
