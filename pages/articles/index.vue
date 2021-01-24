@@ -18,6 +18,7 @@ import { Document } from 'prismic-javascript/types/documents';
 import { apiUrl } from '~/utils/config';
 
 export default Vue.extend({
+  name: 'Articles',
   async asyncData({ app }) {
     const lang = app.i18n.locale === 'en' ? 'en-us' : 'fa-ir';
     const api = await Prismic.getApi(apiUrl);
