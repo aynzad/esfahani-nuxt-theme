@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+
 export default {
   head: {
     title: 'Alireza Esfahani',
@@ -55,7 +57,7 @@ export default {
       },
     },
   },
-  modules: ['nuxt-i18n'],
+  modules: ['nuxt-i18n', '@nuxtjs/style-resources'],
   i18n: {
     seo: true,
     locales: [
@@ -82,7 +84,15 @@ export default {
       },
     },
   },
+  styleResources: {
+    scss: ['~/assets/css/_main.scss'],
+  },
+  alias: {
+    '~': resolve(__dirname),
+    '@': resolve(__dirname),
+  },
   env: {
     API_URL: process.env.API_URL || '',
+    PAGE_SIZE: process.env.PAGE_SIZE || 2,
   },
 };
