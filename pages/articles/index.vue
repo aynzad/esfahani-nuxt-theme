@@ -5,11 +5,11 @@
       <article-title
         :id="article.uid"
         has-link
-        :title="getTitle(article)"
-        :subtitle="getSubtitle(article)"
-        :date="article.first_publication_date"
+        :title="article.title"
+        :subtitle="article.subtitle"
+        :date="article.date"
         :tags="article.tags"
-        :read-time="article.data.read_time"
+        :read-time="article.readTime"
       />
     </article>
     <footer>
@@ -30,13 +30,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import Prismic from 'prismic-javascript';
-import PrismicDom from 'prismic-dom';
-import { Document } from 'prismic-javascript/types/documents';
 import ResolvedApi from 'prismic-javascript/types/ResolvedApi';
 import ArticleTitle from '~/components/article/articleTitle/index.vue';
 import SectionTitle from '~/components/article/sectionTitle/index.vue';
 import Button from '~/components/core/Button.vue';
 import { apiUrl, pageSize } from '~/utils/config';
+import { normalizeArticles, IArticles } from '~/utils/utils';
 
 export default Vue.extend({
   name: 'Articles',
@@ -52,10 +51,9 @@ export default Vue.extend({
       Prismic.Predicates.at('document.type', 'articles'),
       { lang, pageSize, page: 1 }
     );
-    const articles = results.results;
+    const articles = normalizeArticles(results.results);
     const totalPages = results.total_pages;
     return {
-      api,
       articles,
       totalPages,
     };
@@ -63,7 +61,7 @@ export default Vue.extend({
   data() {
     return {
       api: null as ResolvedApi | null,
-      articles: [] as Document[],
+      articles: [] as IArticles[],
       totalPages: 1,
       page: 1,
       isLoadingMore: false,
@@ -75,12 +73,6 @@ export default Vue.extend({
     },
   },
   methods: {
-    getTitle(article: Document) {
-      return PrismicDom.RichText.asText(article.data.article_title);
-    },
-    getSubtitle(article: Document) {
-      return PrismicDom.RichText.asText(article.data.article_subtitle);
-    },
     reset() {
       this.articles = [];
       this.page = 0;
@@ -97,7 +89,7 @@ export default Vue.extend({
       );
       this.page += 1;
       this.isLoadingMore = false;
-      this.articles = [...this.articles, ...results.results];
+      this.articles = [...this.articles, ...normalizeArticles(results.results)];
       this.totalPages = results.total_pages;
     },
   },
