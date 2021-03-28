@@ -34,20 +34,54 @@ export default Vue.extend({
   },
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .menu {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  max-width: var(--container);
   width: 100%;
+  margin: 0 auto;
+  &.big {
+    justify-content: space-around;
+    max-width: unset;
+    margin: 0;
+    padding: 0 16px;
+    @include breakpoint(xs, max) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 16px 0;
+        & > a {
+          margin: 0;
+        }
+      }
+    }
+  }
+  @include breakpoint(xs, max) {
+    &:not(.big) {
+      // TODO: develop humbergur menu for mobile
+      display: none;
+    }
+  }
 }
 .first,
 .second {
   display: flex;
   align-items: center;
+  & > a {
+    margin: 0 20px;
+    text-decoration: none;
+  }
 }
-.first > a,
-.second > a {
-  margin: 0 20px;
+a {
+  color: var(--text-main);
+  &:hover {
+    color: var(--primary-dark);
+  }
 }
 .first {
   justify-content: flex-start;
@@ -55,25 +89,6 @@ export default Vue.extend({
 .second {
   justify-content: flex-end;
 }
-/* .menu {
-  font-size: 36px;
-  font-variation-settings: 'wght' var(--weight-bold);
-  color: var(--primary-main);
-  opacity: 1;
-}
-
-.big {
-  font-size: 350px;
-  position: absolute;
-  z-index: -1;
-  transform: translate(-50%, -50%);
-  top: 41%;
-  left: 50%;
-}
-html[lang='fa-IR'] .big {
-  top: 32%;
-} */
-
 .links {
   padding-top: 15px;
 }

@@ -1,8 +1,8 @@
 <template>
-  <div class="container" :class="{ fullHeight: isHome }">
+  <div class="menu-container" :class="{ fullHeight: isHome }">
     <div class="nav" :class="{ top: !isHome }">
       <Logo :is-big="isHome" />
-      <div v-show="isHome">
+      <div v-if="isHome">
         <h1 class="title">{{ $t('home.title') }}</h1>
         <h2 class="subtitle">{{ $t('home.subtitle') }}</h2>
         <h2 class="job">{{ $t('home.job') }}</h2>
@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Logo from '~/components/Logo.vue';
-import Menu from '~/components/Menu.vue';
+import Logo from '~/components/layout/Logo.vue';
+import Menu from '~/components/layout/Menu.vue';
 
 export default Vue.extend({
   components: { Logo, Menu },
@@ -28,19 +28,23 @@ export default Vue.extend({
   },
 });
 </script>
-<style scoped>
-.container {
+
+<style lang="scss" scoped>
+.menu-container {
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 50px;
-  transition: min-height 0.4s ease-in-out;
+  transition: min-height 0.6s ease-in-out;
+  @include breakpoint(xs, max) {
+    min-height: 30px;
+  }
 }
 
 .fullHeight {
-  transition: min-height 0.4s ease-in-out;
+  transition: min-height 0.6s ease-in-out;
   min-height: 100vh;
 }
 .nav {
@@ -57,29 +61,45 @@ export default Vue.extend({
   color: var(--primary-main);
   font-size: 60px;
   text-transform: uppercase;
-}
-html[lang='fa-IR'] .title {
-  font-variation-settings: 'wght' var(--weight-regular-fa);
-  margin-bottom: -10px;
+  @include breakpoint(xs, max) {
+    font-size: 56px;
+  }
 }
 
 .subtitle {
   font-variation-settings: 'wght' var(--weight-light);
-  font-size: 18px;
-}
-html[lang='fa-IR'] .subtitle {
-  font-size: 14px;
-  font-variation-settings: 'wght' var(--weight-light-fa);
-  margin-bottom: -10px;
+  font-size: 20px;
+  @include breakpoint(xs, max) {
+    font-size: 19px;
+  }
 }
 
 .job {
   font-variation-settings: 'wght' var(--weight-light);
   font-size: 36px;
   padding-bottom: 15px;
+  @include breakpoint(xs, max) {
+    font-size: 28px;
+    padding-bottom: 25px;
+  }
 }
-html[lang='fa-IR'] .job {
-  font-size: 32px;
-  font-variation-settings: 'wght' var(--weight-light-fa);
+
+@include lang(fa) {
+  .title {
+    font-variation-settings: 'wght' var(--weight-regular-fa);
+    margin-bottom: -10px;
+    @include breakpoint(xs, max) {
+      margin-bottom: -16px;
+    }
+  }
+  .subtitle {
+    font-size: 18px;
+    font-variation-settings: 'wght' var(--weight-light-fa);
+    margin-bottom: -10px;
+  }
+  .job {
+    font-size: 32px;
+    font-variation-settings: 'wght' var(--weight-light-fa);
+  }
 }
 </style>
