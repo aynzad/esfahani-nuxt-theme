@@ -1,0 +1,60 @@
+// A map of breakpoints.
+$breakpoints: (
+  xxs: 321px,
+  xs: 426px,
+  sm: 576px,
+  md: 769px,
+  lg: 1025px,
+  xl: 1440px,
+);
+
+@mixin breakpoint($breakpoint, $direction) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @if $direction == max {
+      @media (max-width: ($breakpoint-value - 1)) {
+        @content;
+      }
+    } @else if $direction == min {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @media ($direction: $breakpoint-value) {
+        @content;
+      }
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    @if $direction == max {
+      @media (max-width: $breakpoint) {
+        @content;
+      }
+    } @else if $direction == min {
+      @media (min-width: $breakpoint) {
+        @content;
+      }
+    } @else {
+      @media ($direction: $breakpoint) {
+        @content;
+      }
+    }
+  }
+}
+
+$locales: (
+  'fa': 'fa-IR',
+  'en': 'en-US'
+);
+
+@mixin lang($locale){
+  @if map-has-key($locales, $locale) {
+    $locale-value: map-get($locales, $locale);
+    html[lang="#{$locale-value}"] {
+      @content;
+    }
+  }
+}
