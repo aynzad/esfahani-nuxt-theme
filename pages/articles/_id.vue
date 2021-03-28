@@ -24,7 +24,6 @@ export default Vue.extend({
       const header = PrismicDom.RichText.asText(article.data.article_title);
       const content = PrismicDom.RichText.asText(article.data.article_content);
       return {
-        article,
         header,
         content,
       };
