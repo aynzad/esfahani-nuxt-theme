@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Navbar from '~/components/Navbar.vue';
+import Navbar from '~/components/layout/Navbar.vue';
 
 export default Vue.extend({
   components: { Navbar },
@@ -17,10 +17,11 @@ export default Vue.extend({
 :root {
   --primary-main: #c62641;
   --primary-dark: #b2223a;
-  --primary-dark: #b2223a;
   --text-main: #2b4338;
   --text-light: #4e5d56;
   --text-bg: #ffe0e0;
+  --main-font: 'Josefin Sans', 'MyVazir', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --background-main: #f5f5f5;
   --weight-light: 200;
   --weight-light-fa: 100;
@@ -29,6 +30,12 @@ export default Vue.extend({
   --weight-semibold: 600;
   --weight-bold: 700;
   --weight-bold-fa: 900;
+  --container: 790px;
+  --button-border-color: var(--text-main);
+  --button-disabled-border-color: #adb1af;
+  --button-color: var(--text-main);
+  --first-letter-opacity: 0.13;
+  --first-letter-opacity-light: 0.13;
 }
 
 @font-face {
@@ -43,8 +50,7 @@ html[lang='fa-IR'] {
 }
 
 html {
-  font-family: 'Josefin Sans', 'MyVazir', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--main-font);
   font-size: 16px;
   word-spacing: 1px;
   font-variation-settings: 'wght' var(--weight-regular);
@@ -61,5 +67,14 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
 }
 </style>
