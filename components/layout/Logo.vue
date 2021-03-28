@@ -78,6 +78,7 @@ export default Vue.extend({
 @include breakpoint(xs, max) {
   .logo {
     transition: none;
+    z-index: var(--z-index-logo);
   }
   .big {
     transition: none;

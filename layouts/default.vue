@@ -23,6 +23,7 @@ export default Vue.extend({
   --main-font: 'Josefin Sans', 'MyVazir', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --background-main: #f5f5f5;
+  --background-mobile: #cecdcd;
   --weight-light: 200;
   --weight-light-fa: 100;
   --weight-regular: 400;
@@ -36,6 +37,8 @@ export default Vue.extend({
   --button-color: var(--text-main);
   --first-letter-opacity: 0.13;
   --first-letter-opacity-light: 0.13;
+  --z-index-mobile: 100;
+  --z-index-logo: 1000;
 }
 
 @font-face {

@@ -2,12 +2,13 @@
   <div class="menu-container" :class="{ fullHeight: isHome }">
     <div class="nav" :class="{ top: !isHome }">
       <Logo :is-big="isHome" />
+      <HumbergerIcon :is-open="isOpen" :is-show="!isHome" @click="toggleMenu" />
       <div v-if="isHome">
         <h1 class="title">{{ $t('home.title') }}</h1>
         <h2 class="subtitle">{{ $t('home.subtitle') }}</h2>
         <h2 class="job">{{ $t('home.job') }}</h2>
       </div>
-      <Menu :is-big="isHome" />
+      <Menu :is-big="isHome" :is-open="isOpen" />
     </div>
   </div>
 </template>
@@ -16,14 +17,27 @@
 import Vue from 'vue';
 import Logo from '~/components/layout/Logo.vue';
 import Menu from '~/components/layout/Menu.vue';
+import HumbergerIcon from '~/components/layout/HumbergerIcon.vue';
 
 export default Vue.extend({
-  components: { Logo, Menu },
+  components: { Logo, Menu, HumbergerIcon },
+
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
 
   computed: {
     isHome(): boolean {
       const route = this.$nuxt.$route.name;
       return route === 'index___fa' || route === 'index___en';
+    },
+  },
+
+  methods: {
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
     },
   },
 });
