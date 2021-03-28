@@ -2,7 +2,7 @@
   "logo": "A",
   "home": {
     "title": "Alireza Esfahani",
-    "subtitle": "The true story of my life as a",
+    "subtitle": "My life as a",
     "job": "Front-end developer"
   },
   "menu": {
@@ -12,5 +12,10 @@
     "about": "About",
     "contact": "Contact",
     "switchLocale": "فارسی"
-  }
+  },
+  "articles": {
+    "title": "Articles",
+    "readTime": "{min} min read"
+  },
+  "loadMore": "Load More"
 }
