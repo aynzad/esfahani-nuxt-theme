@@ -1,2 +1,2 @@
 export const apiUrl = process.env.API_URL || '';
-export const pageSize = process.env.PageSize || 2;
+export const pageSize = process.env.PAGE_SIZE || 2;
