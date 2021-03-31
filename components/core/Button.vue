@@ -99,9 +99,15 @@ button.size-small.loading .loading-wrapper {
 }
 button.size-medium.loading .loading-wrapper {
   margin-top: 6px;
+  @include breakpoint(xs, max) {
+    margin-top: -2px;
+  }
 }
 button.size-big.loading .loading-wrapper {
   margin-top: 10px;
+  @include breakpoint(xs, max) {
+    margin-top: 6px;
+  }
 }
 
 @include lang(fa) {
@@ -125,6 +131,14 @@ button.size-big.loading .loading-wrapper {
     font-size: 20px;
     line-height: 60px;
   }
+  @include breakpoint(xs, max) {
+    height: 40px;
+    min-width: 200px;
+    & > span {
+      font-size: 14px;
+      line-height: 40px;
+    }
+  }
 }
 .size-big {
   height: 80px;
@@ -132,6 +146,14 @@ button.size-big.loading .loading-wrapper {
   & > span {
     font-size: 26px;
     line-height: 80px;
+  }
+  @include breakpoint(xs, max) {
+    height: 60px;
+    min-width: 260px;
+    & > span {
+      font-size: 20px;
+      line-height: 60px;
+    }
   }
 }
 </style>
