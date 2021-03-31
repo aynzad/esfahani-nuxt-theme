@@ -84,6 +84,7 @@ export default Vue.extend({
     transition: none;
     width: 300px;
     font-size: 300px;
+    z-index: -1;
   }
   @include lang(fa) {
     .big {

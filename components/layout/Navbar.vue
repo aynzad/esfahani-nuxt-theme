@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-container" :class="{ fullHeight: isHome }">
+  <div class="menu-container" :class="{ fullHeight: isHome, open: isOpen }">
     <div class="nav" :class="{ top: !isHome }">
       <Logo :is-big="isHome" />
       <HumbergerIcon :is-open="isOpen" :is-show="!isHome" @click="toggleMenu" />
@@ -37,6 +37,11 @@ export default Vue.extend({
 
   methods: {
     toggleMenu() {
+      if (this.isOpen) {
+        document.getElementsByTagName('body')[0].style.overflowY = '';
+      } else {
+        document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+      }
       this.isOpen = !this.isOpen;
     },
   },
@@ -55,6 +60,15 @@ export default Vue.extend({
   @include breakpoint(xs, max) {
     min-height: 30px;
   }
+  &.open {
+    top: 0;
+    left: 0;
+    // position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: var(--z-index-mobile);
+    padding-top: 6px;
+  }
 }
 
 .fullHeight {
@@ -65,9 +79,6 @@ export default Vue.extend({
   position: relative;
   width: 100%;
   height: 100%;
-}
-.top {
-  opacity: 20px;
 }
 
 .title {

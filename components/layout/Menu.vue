@@ -96,17 +96,19 @@ a {
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
-      height: calc(100vh);
+      height: 100vh;
       padding-top: 50px;
       position: fixed;
       z-index: var(--z-index-mobile);
       background: var(--background-mobile);
-      top: 0px;
+      top: -100vh;
       justify-content: flex-start;
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
       transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
       &.open {
+        top: 0;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
         transform: translate(0, 0);
       }
       & > div {
