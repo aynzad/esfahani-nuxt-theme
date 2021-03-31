@@ -13,7 +13,7 @@ export default Vue.extend({
   components: { Navbar },
 });
 </script>
-<style>
+<style lang="scss">
 :root {
   --primary-main: #c62641;
   --primary-dark: #b2223a;
@@ -69,7 +69,10 @@ html {
 *:before,
 *:after {
   box-sizing: border-box;
-  margin: 0;
+  @media (prefers-reduced-motion) {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 a {

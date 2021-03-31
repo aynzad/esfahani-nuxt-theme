@@ -58,3 +58,9 @@ $locales: (
     }
   }
 }
+
+@mixin reduceMotion() {
+  @media (prefers-reduced-motion) {
+    @content;
+  }
+}

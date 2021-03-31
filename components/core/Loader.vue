@@ -1,6 +1,6 @@
 <template>
   <div class="loadingio-spinner-ripple">
-    <div class="ldio-odeklonaoi">
+    <div class="loader">
       <div />
       <div />
     </div>
@@ -17,8 +17,8 @@ export default Vue.extend({
   methods: {},
 });
 </script>
-<style scoped>
-@keyframes ldio-odeklonaoi {
+<style lang='scss' scoped>
+@keyframes loader {
   0% {
     top: 52px;
     left: 52px;
@@ -34,22 +34,34 @@ export default Vue.extend({
     opacity: 0;
   }
 }
-.ldio-odeklonaoi div {
+@include reduceMotion() {
+  .loadingio-spinner-ripple:after {
+    content: '...';
+    font-size: 20px;
+    top: -6px;
+    margin-left: -12px;
+    position: absolute;
+    letter-spacing: 10px;
+  }
+}
+.loader div {
   position: absolute;
   border-width: 2px;
   border-style: solid;
   opacity: 1;
   border-radius: 50%;
-  animation: ldio-odeklonaoi 0.8695652173913042s cubic-bezier(0, 0.2, 0.8, 1)
-    infinite;
+  animation: loader 0.87s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  @include reduceMotion() {
+    display: none;
+  }
 }
-.ldio-odeklonaoi div:nth-child(1) {
+.loader div:nth-child(1) {
   border-color: var(--text-main);
   animation-delay: 0s;
 }
-.ldio-odeklonaoi div:nth-child(2) {
+.loader div:nth-child(2) {
   border-color: var(--text-light);
-  animation-delay: -0.4347826086956521s;
+  animation-delay: -0.43;
 }
 .loadingio-spinner-ripple {
   width: 38px;
@@ -58,7 +70,7 @@ export default Vue.extend({
   overflow: hidden;
   background: none;
 }
-.ldio-odeklonaoi {
+.loader {
   width: 100%;
   height: 100%;
   position: relative;
@@ -66,7 +78,7 @@ export default Vue.extend({
   backface-visibility: hidden;
   transform-origin: 0 0; /* see note above */
 }
-.ldio-odeklonaoi div {
+.loader div {
   box-sizing: content-box;
 }
 </style>
