@@ -35,7 +35,8 @@ import ArticleTitle from '~/components/article/articleTitle/index.vue';
 import SectionTitle from '~/components/article/sectionTitle/index.vue';
 import Button from '~/components/core/Button.vue';
 import { apiUrl, pageSize } from '~/utils/config';
-import { normalizeArticles, IArticles } from '~/utils/utils';
+import { normalizeArticles } from '~/utils/utils';
+import { IArticles } from '~/utils/types';
 
 export default Vue.extend({
   name: 'Articles',
