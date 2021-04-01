@@ -67,7 +67,13 @@ export default Vue.extend({
   },
   methods: {
     firstLetter(title: string) {
-      return title.slice(0, 1);
+      const sliced = title.slice(0, 1);
+      switch (sliced) {
+        case 'آ':
+          return 'الف';
+        default:
+          return sliced;
+      }
     },
     parseDate(
       isoString: string,
@@ -181,6 +187,11 @@ export default Vue.extend({
     line-height: 1.2;
     margin-left: 0px;
     margin-top: 4px;
+  }
+}
+@include lang(fa) {
+  .subtitle {
+    margin-top: 8px;
   }
 }
 
