@@ -112,15 +112,12 @@ export default Vue.extend({
 @include lang(fa) {
   .title {
     font-variation-settings: 'wght' var(--weight-regular-fa);
-    margin-bottom: -10px;
     @include breakpoint(xs, max) {
-      margin-bottom: -16px;
     }
   }
   .subtitle {
     font-size: 18px;
     font-variation-settings: 'wght' var(--weight-light-fa);
-    margin-bottom: -10px;
   }
   .job {
     font-size: 32px;
