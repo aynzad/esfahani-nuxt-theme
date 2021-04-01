@@ -1,8 +1,19 @@
 <template>
-  <section class="articles">
-    <h1 class="title">{{ header }}</h1>
-    <p class="paragraph">{{ content }}</p>
-  </section>
+  <article class="container article">
+    <ArticleTitle
+      v-if="uid"
+      :id="uid"
+      :date="date"
+      :title="title"
+      :subtitle="subtitle"
+      :tags="tags"
+      :read-time="readTime"
+    />
+    <Slice v-if="body.length > 0" :body="body" />
+    <footer>
+      <div class="done">&bull; &bull;</div>
+    </footer>
+  </article>
 </template>
 
 <script lang="ts">
@@ -10,10 +21,16 @@ import Vue from 'vue';
 import { Context } from '@nuxt/types';
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
+import ArticleTitle from '~/components/article/articleTitle/index.vue';
+import Slice from '~/components/slices/index.vue';
 import { apiUrl } from '~/utils/config';
 
 export default Vue.extend({
   name: 'Article',
+  components: {
+    ArticleTitle,
+    Slice,
+  },
   async asyncData({ app, params, redirect }: Context) {
     const lang = app.i18n.locale === 'en' ? 'en-us' : 'fa-ir';
     const api = await Prismic.getApi(apiUrl);
@@ -21,36 +38,60 @@ export default Vue.extend({
       lang,
     });
     if (article) {
-      const header = PrismicDom.RichText.asText(article.data.article_title);
-      const content = PrismicDom.RichText.asText(article.data.article_content);
       return {
-        header,
-        content,
+        uid: article.uid,
+        title: PrismicDom.RichText.asText(article.data.article_title),
+        subtitle: PrismicDom.RichText.asText(article.data.article_subtitle),
+        date: article.first_publication_date,
+        tags: article.tags,
+        readTime: article.data.read_time,
+        body: article.data.body,
       };
     } else {
       redirect(app.i18n.locale === 'en' ? '/' : '/fa');
     }
   },
+  data() {
+    return {
+      uid: '',
+      title: '',
+      subtitle: '',
+      date: null as string | null,
+      tags: [],
+      readTime: null as string | null,
+      body: [],
+    };
+  },
+  watch: {
+    '$i18n.locale'() {
+      this.reset();
+    },
+  },
+  methods: {
+    reset() {
+      this.uid = '';
+      this.title = '';
+      this.subtitle = '';
+      this.date = null;
+      this.tags = [];
+      this.readTime = null;
+      this.body = [];
+    },
+  },
 });
 </script>
 
-<style scoped>
-.articles {
-  margin: 25px 0;
-  padding: 0 100px;
+<style lang='scss' scoped>
+footer {
+  margin: 90px 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
+  @include breakpoint(xs, max) {
+    margin: 45px 0;
+  }
 }
-.title {
-  margin: 50px 0;
-}
-p {
-  color: #000;
-  margin: 15px 0 5px;
-  max-width: 450px;
-  line-height: 1.44;
+
+.done {
+  color: var(--text-light);
 }
 </style>
