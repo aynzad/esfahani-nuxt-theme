@@ -27,7 +27,6 @@ export default Vue.extend({
   opacity: 1;
   cursor: pointer;
   width: 30px;
-  top: 15px;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
@@ -39,6 +38,11 @@ export default Vue.extend({
   &:not(.big) {
     transition: font-size 0.6s ease-out, width 0.6s ease-out, top 0.6s,
       opacity 0.6s ease-out;
+  }
+}
+@include lang(fa) {
+  .logo {
+    top: 8px;
   }
 }
 .big {
