@@ -37,15 +37,6 @@ export default {
         sizes: '16x16',
         href: '/favicon-16x16.png',
       },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-      },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200..700',
-      },
     ],
   },
   loading: { color: '#C62641' },
@@ -57,7 +48,16 @@ export default {
       },
     },
   },
-  modules: ['nuxt-i18n', '@nuxtjs/style-resources'],
+  modules: [
+    'nuxt-i18n',
+    '@nuxtjs/style-resources',
+    [
+      'nuxt-highlightjs',
+      {
+        style: 'Dracula',
+      },
+    ],
+  ],
   i18n: {
     seo: true,
     locales: [
