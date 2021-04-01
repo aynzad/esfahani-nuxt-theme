@@ -15,6 +15,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "eslint": "^7.18.0",
     "nuxt": "^2.0.0",
+    "nuxt-highlightjs": "^1.0.1",
     "nuxt-i18n": "^6.18.0",
     "prettier": "^2.2.1",
     "prismic-dom": "^2.2.4",
