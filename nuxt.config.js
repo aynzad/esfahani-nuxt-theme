@@ -54,7 +54,7 @@ export default {
     [
       'nuxt-highlightjs',
       {
-        style: 'Dracula',
+        style: 'dracula',
       },
     ],
   ],
