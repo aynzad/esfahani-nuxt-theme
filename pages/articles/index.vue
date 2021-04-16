@@ -48,12 +48,12 @@ export default Vue.extend({
   async asyncData({ app }) {
     const lang = app.i18n.locale === 'en' ? 'en-us' : 'fa-ir';
     const api = await Prismic.getApi(apiUrl);
-    const results = await api.query(
+    const response = await api.query(
       Prismic.Predicates.at('document.type', 'articles'),
       { lang, pageSize, page: 1 }
     );
-    const articles = normalizeArticles(results.results);
-    const totalPages = results.total_pages;
+    const articles = normalizeArticles(response.results);
+    const totalPages = response.total_pages;
     return {
       articles,
       totalPages,
