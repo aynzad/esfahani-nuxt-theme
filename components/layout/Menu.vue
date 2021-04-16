@@ -7,7 +7,7 @@
       <NuxtLink :to="localePath('/projects')">
         {{ $t('menu.projects') }}
       </NuxtLink>
-      <NuxtLink :to="localePath('/github')">{{ $t('menu.github') }}</NuxtLink>
+      <a href="https://github.com/aynzad">{{ $t('menu.github') }}</a>
     </div>
     <div class="second">
       <NuxtLink :to="localePath('/about')">{{ $t('menu.about') }}</NuxtLink>
