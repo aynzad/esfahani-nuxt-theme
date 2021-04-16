@@ -20,9 +20,17 @@ export default Vue.extend({
       default: () => {},
     },
   },
+  head() {
+    return {
+      title: `${this.errorCode} ${this.$t(
+        `error.${this.errorCode}.title`
+      )} :: ${this.$t('home.title')}`,
+    };
+  },
   computed: {
     errorCode() {
-      return this.error.statusCode || 500;
+      const error = this.error as any;
+      return error.statusCode || 500;
     },
   },
 });

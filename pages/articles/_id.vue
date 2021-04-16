@@ -62,6 +62,11 @@ export default Vue.extend({
       body: [],
     };
   },
+  head() {
+    return {
+      title: `${this.title} :: ${this.$t('home.title')}`,
+    };
+  },
   watch: {
     '$i18n.locale'() {
       this.reset();

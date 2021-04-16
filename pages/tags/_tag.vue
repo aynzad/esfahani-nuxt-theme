@@ -72,6 +72,13 @@ export default Vue.extend({
       isLoadingMore: false,
     };
   },
+  head() {
+    return {
+      title: `${this.$t('tags.title', {
+        tag: this.$route.params.tag,
+      })} :: ${this.$t('home.title')}`,
+    };
+  },
   watch: {
     '$i18n.locale'() {
       this.reset();

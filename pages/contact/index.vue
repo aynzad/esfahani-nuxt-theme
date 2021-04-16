@@ -40,6 +40,11 @@ export default Vue.extend({
       content: '',
     };
   },
+  head() {
+    return {
+      title: `${this.$t('contact.title')} :: ${this.$t('home.title')}`,
+    };
+  },
   watch: {
     '$i18n.locale'() {
       this.reset();
