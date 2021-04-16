@@ -42,6 +42,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .code {
+  direction: ltr;
   margin-bottom: 16px;
   pre {
     display: flex;
