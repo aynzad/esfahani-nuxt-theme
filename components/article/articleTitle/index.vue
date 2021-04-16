@@ -67,7 +67,10 @@ export default Vue.extend({
   },
   methods: {
     firstLetter(title: string) {
-      const sliced = title.slice(0, 1);
+      const sliced = title
+        .replace(/[^A-Za-zآ-ی]/g, '')
+        .slice(0, 1)
+        .toUpperCase();
       switch (sliced) {
         case 'آ':
           return 'الف';
