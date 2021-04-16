@@ -45,7 +45,9 @@ export default Vue.extend({
 
 @font-face {
   font-family: 'MyVazir';
-  src: url('~static/fonts/vazir.ttf') format('truetype-variations');
+  src: url('~static/fonts/Vazir-Variable.woff2') format('woff2-variations'),
+    url('~static/fonts/Vazir-Variable.woff') format('woff-variations'),
+    url('~static/fonts/Vazir-Variable.ttf') format('truetype-variations');
   font-weight: 100 900;
   font-display: swap;
   font-style: normal;
