@@ -17,5 +17,18 @@
     "title": "Articles",
     "readTime": "{min} min read"
   },
-  "loadMore": "Load More"
+  "tags": {
+    "title": "{tag}`s Articles"
+  },
+  "loadMore": "Load More",
+  "error": {
+    "404": {
+      "title": "Not Found",
+      "description": "You are looking for a page that does not exist yet!"
+    },
+    "500": {
+      "title": "Server Error",
+      "description": "Somehow, something, somewhere went wrong!"
+    }
+  }
 }
