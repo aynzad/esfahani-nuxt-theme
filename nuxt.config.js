@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import Prismic from 'prismic-javascript';
 
 export default {
   head: {
@@ -57,6 +58,7 @@ export default {
         style: 'dracula',
       },
     ],
+    '@nuxtjs/sitemap',
   ],
   i18n: {
     seo: true,
@@ -82,6 +84,31 @@ export default {
         cookieKey: 'i18n_redirected',
         onlyOnRoot: true,
       },
+    },
+  },
+  sitemap: {
+    defaults: {
+      changefreq: 'monthly',
+      priority: 1,
+      lastmod: new Date(),
+    },
+    routes: async () => {
+      const api = await Prismic.getApi(process.env.API_URL);
+      const responseEn = await api.query(
+        Prismic.Predicates.at('document.type', 'articles'),
+        { lang: 'en-us' }
+      );
+      const responseFa = await api.query(
+        Prismic.Predicates.at('document.type', 'articles'),
+        { lang: 'fa-ir' }
+      );
+      const faArticles = responseFa.results.map(
+        (article) => `/articles/fa/${article.uid}`
+      );
+      const enArticles = responseEn.results.map(
+        (article) => `/articles/${article.uid}`
+      );
+      return [...enArticles, ...faArticles];
     },
   },
   styleResources: {
