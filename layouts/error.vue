@@ -10,7 +10,7 @@
   </section>
 </template>
 
-<script lang="ts" scoped>
+<script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
   name: 'Error',
@@ -28,7 +28,7 @@ export default Vue.extend({
   },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .error {
   text-align: center;
   width: 100%;
