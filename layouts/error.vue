@@ -10,7 +10,7 @@
   </section>
 </template>
 
-<script lang="ts">
+<script lang="ts" scoped>
 import Vue from 'vue';
 export default Vue.extend({
   name: 'Error',
