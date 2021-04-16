@@ -1,8 +1,6 @@
 <template>
-  <article class="container about">
-    <section-title :title="$t('about.title')" />
-    <img v-if="picture" :src="picture.url" :alt="name" />
-    <h1>{{ name }}</h1>
+  <article class="container contact">
+    <section-title :title="$t('contact.title')" />
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="content" v-html="content" />
     <footer>
@@ -20,19 +18,17 @@ import SectionTitle from '~/components/article/sectionTitle/index.vue';
 import { apiUrl } from '~/utils/config';
 
 export default Vue.extend({
-  name: 'About',
+  name: 'Contact',
   components: { SectionTitle },
   async asyncData({ app, redirect }: Context) {
     const lang = app.i18n.locale === 'en' ? 'en-us' : 'fa-ir';
     const api = await Prismic.getApi(apiUrl);
-    const page = await api.getSingle('about', {
+    const page = await api.getSingle('contact', {
       lang,
     });
     if (page) {
       return {
         uid: page.uid,
-        name: PrismicDom.RichText.asText(page.data.name),
-        picture: page.data.picture,
         content: PrismicDom.RichText.asHtml(page.data.content),
       };
     } else {
@@ -41,9 +37,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      uid: '',
-      name: '',
-      picture: null,
       content: '',
     };
   },
@@ -54,8 +47,6 @@ export default Vue.extend({
   },
   methods: {
     reset() {
-      this.uid = '';
-      this.name = '';
       this.content = '';
     },
   },
@@ -63,23 +54,9 @@ export default Vue.extend({
 </script>
 
 <style lang='scss' scoped>
-.about {
-  text-align: center;
-
-  img {
-    width: 150px;
-    margin-top: 40px;
-    border-radius: 50%;
-  }
-  h1 {
-    font-size: 36px;
-    text-align: center;
-    margin-top: 15pxx;
-    margin-bottom: 30px;
-    font-variation-settings: 'wght' var(--weight-semibold);
-  }
+.contact {
   .content::v-deep {
-    text-align: initial;
+    margin: 30px 0;
     font-family: var(--text-font);
     & > div {
       margin-bottom: 16px;
@@ -111,6 +88,14 @@ export default Vue.extend({
 
   .done {
     color: var(--text-light);
+  }
+
+  @include lang(fa) {
+    .about {
+      .content::v-deep {
+        text-align: right;
+      }
+    }
   }
 }
 </style>

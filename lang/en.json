@@ -20,6 +20,12 @@
   "tags": {
     "title": "{tag}`s Articles"
   },
+  "about": {
+    "title": "About me"
+  },
+  "contact": {
+    "title": "Contact me"
+  },
   "loadMore": "Load More",
   "error": {
     "404": {
