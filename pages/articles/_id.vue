@@ -63,8 +63,9 @@ export default Vue.extend({
     };
   },
   head() {
+    const articleTitle = this.title as string;
     return {
-      title: `${this.title} :: ${this.$t('home.title')}`,
+      title: `${articleTitle} :: ${this.$t('home.title')}`,
     };
   },
   watch: {

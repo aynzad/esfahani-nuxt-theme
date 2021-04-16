@@ -21,10 +21,12 @@ export default Vue.extend({
     },
   },
   head() {
+    const error = this.error as any;
+    const errorCode = error.statusCode || 500;
     return {
-      title: `${this.errorCode} ${this.$t(
-        `error.${this.errorCode}.title`
-      )} :: ${this.$t('home.title')}`,
+      title: `${errorCode} ${this.$t(`error.${errorCode}.title`)} :: ${this.$t(
+        'home.title'
+      )}`,
     };
   },
   computed: {
