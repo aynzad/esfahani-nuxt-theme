@@ -15,8 +15,16 @@ export default function (doc: IDoc) {
     return '/';
   }
 
-  if (doc.type === 'article') {
+  if (doc.type === 'articles') {
     return '/articles/' + doc.uid;
+  }
+
+  if (doc.type === 'about') {
+    return '/about/';
+  }
+
+  if (doc.type === 'contact') {
+    return '/contact/';
   }
 
   return '/not-found';
