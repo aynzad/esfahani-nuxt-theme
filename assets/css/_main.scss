@@ -64,3 +64,37 @@ $locales: (
     @content;
   }
 }
+
+p {
+  a {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-weight: 600;
+    &:active,
+    &:hover {
+      outline-width: 0;
+      &:after {
+        left: 0;
+        bottom: -4px;
+        width: calc(100% + 6px);
+        margin: 0 -3px;
+        height: calc(100% + 4px);
+      }
+    }
+    &:after {
+      border-radius: 2px;
+      content: '';
+      background: var(--primary-light);
+      position: absolute;
+      left: 10px;
+      bottom: -4px;
+      margin: 0;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      z-index: -1;
+      transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
+    }
+  }
+}
