@@ -2,7 +2,6 @@
   <section class="error">
     <div class="wrapper">
       <span>{{ errorCode }}</span>
-      <!-- eslint-disable-next-line vue/html-self-closing -->
       <img v-if="errorCode === 404" src="~static/gonjeshk.gif" alt="gonjeshk" />
       <h1>{{ $t(`error.${errorCode}.title`) }}</h1>
       <p>{{ $t(`error.${errorCode}.description`) }}</p>
