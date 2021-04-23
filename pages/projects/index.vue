@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Construction from '~/components/core/construction.vue';
+import Construction from '~/components/core/Construction.vue';
 
 export default Vue.extend({
   name: 'Projects',
