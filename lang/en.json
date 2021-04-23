@@ -36,5 +36,8 @@
       "title": "Server Error",
       "description": "Somehow, something, somewhere went wrong!"
     }
+  },
+  "under_construction": {
+    "title": "Under Construction"
   }
 }
