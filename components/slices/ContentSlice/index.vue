@@ -35,6 +35,8 @@ export default Vue.extend({
   &.content::v-deep {
     & > div {
       margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
     }
     img {
       max-width: 100%;
@@ -42,6 +44,7 @@ export default Vue.extend({
     p {
       font-size: 18px;
       line-height: 29px;
+      margin-bottom: 16px;
     }
     ul,
     ol {
