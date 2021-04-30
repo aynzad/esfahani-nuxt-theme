@@ -164,6 +164,12 @@ export default Vue.extend({
   }
   & > a {
     color: var(--text-main);
+    transition: 0.4s all ease;
+
+    &:hover {
+      transition: 0.4s all ease;
+      color: var(--primary-main);
+    }
   }
 }
 @include lang(fa) {

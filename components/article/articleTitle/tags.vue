@@ -35,7 +35,13 @@ export default Vue.extend({
     font-size: 11px;
   }
   a {
+    transition: 0.4s all ease;
     color: var(--text-light);
+
+    &:hover {
+      transition: 0.4s all ease;
+      color: var(--primary-main);
+    }
   }
 }
 .tag {
