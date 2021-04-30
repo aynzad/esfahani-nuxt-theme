@@ -50,7 +50,12 @@ export default Vue.extend({
     const api = await Prismic.getApi(apiUrl);
     const response = await api.query(
       Prismic.Predicates.at('document.type', 'articles'),
-      { lang, pageSize, page: 1 }
+      {
+        lang,
+        pageSize,
+        page: 1,
+        orderings: '[document.first_publication_date desc]',
+      }
     );
     const articles = normalizeArticles(response.results);
     const totalPages = response.total_pages;
