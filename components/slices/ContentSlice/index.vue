@@ -38,20 +38,54 @@ export default Vue.extend({
       display: flex;
       flex-direction: column;
     }
+
     img {
       max-width: 100%;
     }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.75rem;
+    }
+    h4 {
+      font-size: 1.5rem;
+    }
+    h5 {
+      font-size: 1.25rem;
+    }
+    h6 {
+      font-size: 1rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-variation-settings: 'wght' var(--weight-semi-bold);
+      line-height: 1.2;
+    }
+
     p {
-      font-size: 18px;
-      line-height: 29px;
+      font-size: 1.125rem;
+      line-height: 2rem;
       margin-bottom: 16px;
     }
+
     ul,
     ol {
       margin-bottom: 15px;
       margin-top: 5px;
-      font-size: 18px;
-      line-height: 29px;
+      font-size: 1.125rem;
+      line-height: 2rem;
     }
   }
 }
