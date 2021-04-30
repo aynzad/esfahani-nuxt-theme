@@ -73,6 +73,7 @@ export default Vue.extend({
         .toUpperCase();
       switch (sliced) {
         case 'آ':
+        case 'ا':
           return 'الف';
         default:
           return sliced;
