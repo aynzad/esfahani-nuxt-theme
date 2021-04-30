@@ -96,6 +96,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .article-title {
+  width: 100%;
   padding-top: 50px;
   position: relative;
   @include breakpoint(md, max) {
