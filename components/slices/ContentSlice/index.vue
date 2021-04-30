@@ -41,6 +41,8 @@ export default Vue.extend({
 
     img {
       max-width: 100%;
+      box-shadow: 0 0 12px #e4e4e4;
+      border-radius: 4px;
     }
 
     h1 {
