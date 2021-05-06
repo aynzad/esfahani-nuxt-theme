@@ -10,12 +10,16 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Alireza Esfahani website',
+        content: 'Alireza Esfahani Personal Website/Weblog',
       },
+      { name: 'author', content: 'Alireza Esfahani' },
       { name: 'apple-mobile-web-app-title', content: 'Alireza Esfahani' },
       { name: 'application-name', content: 'Alireza Esfahani' },
       { name: 'msapplication-TileColor', content: '#C62641' },
       { name: 'theme-color', content: '#C62641' },
+      { name: 'og:type', content: 'website' },
+      { name: 'og:image', content: '/meta-image-en.png' },
+      { name: 'twitter:image', content: '/meta-image-en.png' },
     ],
     link: [
       {
