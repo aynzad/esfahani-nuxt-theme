@@ -117,6 +117,9 @@ html {
 .container {
   max-width: var(--container);
   margin: 0 auto;
+  @include breakpoint(md, max) {
+    padding: 0 15px;
+  }
 }
 
 a {
