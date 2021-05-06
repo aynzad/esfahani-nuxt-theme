@@ -50,7 +50,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .menu-container {
-  margin: 0 auto;
+  margin: 5px auto;
   display: flex;
   justify-content: center;
   align-items: center;
