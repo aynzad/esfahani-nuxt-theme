@@ -1,0 +1,110 @@
+{
+    "Main": {
+        "uid": {
+            "type": "UID",
+            "config": {
+                "label": "Article ID",
+                "placeholder": "Slug"
+            }
+        },
+        "article_title": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading1",
+                "label": "Article Title",
+                "placeholder": "Title"
+            }
+        },
+        "article_subtitle": {
+            "type": "StructuredText",
+            "config": {
+                "single": "heading2",
+                "label": "Article Subtitle",
+                "placeholder": "Subtitle"
+            }
+        },
+        "read_time": {
+            "type": "Number",
+            "config": {
+                "label": "Read time",
+                "placeholder": "Read Time (minute)"
+            }
+        },
+        "body": {
+            "type": "Slices",
+            "fieldset": "Slice zone",
+            "config": {
+                "labels": {
+                    "code": [
+                        {
+                            "display": "lang",
+                            "name": "lang"
+                        }
+                    ]
+                },
+                "choices": {
+                    "text": {
+                        "type": "Slice",
+                        "fieldset": "Content",
+                        "description": "Content section",
+                        "icon": "text_fields",
+                        "non-repeat": {},
+                        "repeat": {
+                            "text": {
+                                "type": "StructuredText",
+                                "config": {
+                                    "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                                    "label": "Content",
+                                    "placeholder": "Post Content..."
+                                }
+                            }
+                        }
+                    },
+                    "quote": {
+                        "type": "Slice",
+                        "fieldset": "Quote",
+                        "description": "A quote section",
+                        "icon": "format_quote",
+                        "non-repeat": {
+                            "quote": {
+                                "type": "StructuredText",
+                                "config": {
+                                    "single": "paragraph",
+                                    "label": "Quote",
+                                    "placeholder": "Post Quote..."
+                                }
+                            }
+                        },
+                        "repeat": {}
+                    },
+                    "code": {
+                        "type": "Slice",
+                        "fieldset": "Code",
+                        "description": "Code",
+                        "icon": "code",
+                        "display": "list",
+                        "non-repeat": {
+                            "lang": {
+                                "type": "StructuredText",
+                                "config": {
+                                    "single": "paragraph",
+                                    "label": "Language",
+                                    "placeholder": "Code Language..."
+                                }
+                            },
+                            "code": {
+                                "type": "StructuredText",
+                                "config": {
+                                    "single": "preformatted",
+                                    "label": "Code",
+                                    "placeholder": "Post Code..."
+                                }
+                            }
+                        },
+                        "repeat": {}
+                    }
+                }
+            }
+        }
+    }
+}
