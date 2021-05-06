@@ -1,6 +1,6 @@
 {
     "name": "Alireza Esfahani",
-    "short_name": "alirezaEsfahani",
+    "short_name": "esfahani.dev",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,6 +15,6 @@
     ],
     "theme_color": "#da532c",
     "background_color": "#ffffff",
-    "start_url": "https://alirezaesfahani.com",
+    "start_url": "https://esfahani.dev",
     "display": "standalone"
 }
