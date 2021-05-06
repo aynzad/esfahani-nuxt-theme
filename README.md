@@ -12,7 +12,7 @@
 The **Esfahani Theme** is a multilingue NuxtJs theme which aims to modernize, organize and enhance some aspects of personal website or weblog themes development. 
 
 ## Live Demo
-Live production demo (`master` branch) is available on [esfahani.dev](https://esfahani.dev) and staging demo (`dev` branch) on [esfahani.vercel.app](https://esfahani.vercel.app/).
+Live production demo is available on [esfahani.dev](https://esfahani.dev).
 
 ## How it works:
 - [NuxtJs](https://nuxtjs.org/) SSR
