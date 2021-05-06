@@ -1,7 +1,7 @@
 <p align="center"><img align="center" style="width:320px" src="./static/android-chrome-512x512.png"/></p><br/>
 <p align="center">
-    <span><img src="https://badgen.net/github/license/aynzad/esfahani-nuxt-theme" alt="license"></span>
-    <span><img src="https://badgen.net/github/release/aynzad/esfahani-nuxt-theme" alt="release"></span>
+    <span><img src="https://badgen.net/badge/license/MIT/blue" alt="license"></span>
+    <span><img src="https://badgen.net/github/releases/aynzad/esfahani-nuxt-theme" alt="release"></span>
     <span><img src="https://badgen.net/github/last-commit/aynzad/esfahani-nuxt-theme" alt="last commit"></span>
     <span><img src="https://badgen.net/github/commits/aynzad/esfahani-nuxt-theme" alt="commits"></span>
     <span><img src="https://badgen.net/github/open-issues/aynzad/esfahani-nuxt-theme" alt="open issues"></span>
