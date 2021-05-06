@@ -1,6 +1,6 @@
 {
   "name": "esfahani-nuxt-theme",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A Personal website/weblog theme based on Nuxtjs & Prismic for esfahani.dev",
   "author": "Alireza Esfahani <aynzad@gmail.com>",
   "scripts": {
