@@ -11,6 +11,9 @@
       }
     }
   ],
+  "tscOptions": {
+    "sourceMap": false
+  },
   "routes": [
     {
       "src": "/_nuxt/.+",
@@ -28,7 +31,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/$1"
     }
   ]
 }
