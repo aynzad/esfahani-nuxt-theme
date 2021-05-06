@@ -1,12 +1,13 @@
-<p align="center" style='background: #f5f5f5;'><img align="center" style="width:320px" src="./static/meta-image-en.png"/></p><br/>
+<p align="center"><img align="center" style="width:320px" src="./static/android-chrome-512x512.png"/></p><br/>
+<p align="center">
+    <span><img src="https://badgen.net/github/license/aynzad/esfahani-nuxt-theme" alt="license"></span>
+    <span><img src="https://badgen.net/github/release/aynzad/esfahani-nuxt-theme" alt="release"></span>
+    <span><img src="https://badgen.net/github/last-commit/aynzad/esfahani-nuxt-theme" alt="last commit"></span>
+    <span><img src="https://badgen.net/github/commits/aynzad/esfahani-nuxt-theme" alt="commits"></span>
+    <span><img src="https://badgen.net/github/open-issues/aynzad/esfahani-nuxt-theme" alt="open issues"></span>
+</p>
 
 # Esfahani Theme
-<img src="https://badgen.net/github/license/aynzad/esfahani-nuxt-theme" alt="license">
-<img src="https://badgen.net/github/release/aynzad/esfahani-nuxt-theme" alt="release">
-<img src="https://badgen.net/github/last-commit/aynzad/esfahani-nuxt-theme" alt="last commit">
-<img src="https://badgen.net/github/commits/aynzad/esfahani-nuxt-theme" alt="commits">
-<img src="https://badgen.net/github/open-issues/aynzad/esfahani-nuxt-theme" alt="open issues">
-
 
 The **Esfahani Theme** is a multilingue NuxtJs theme which aims to modernize, organize and enhance some aspects of personal website or weblog themes development. 
 
