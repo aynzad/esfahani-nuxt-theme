@@ -6,7 +6,8 @@
       "use": "@nuxtjs/vercel-builder",
       "config": {
         "serverFiles": [
-          "package.json"
+          "package.json",
+          ".nuxt/dist/sitemap-routes.json"
         ]
       }
     }
