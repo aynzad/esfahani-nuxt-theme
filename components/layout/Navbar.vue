@@ -35,6 +35,12 @@ export default Vue.extend({
     },
   },
 
+  watch: {
+    '$route.path'() {
+      this.toggleMenu();
+    },
+  },
+
   methods: {
     toggleMenu() {
       if (this.isOpen) {
