@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import Prismic from 'prismic-javascript';
+import { isStaging } from './utils/config';
 
 export default {
   head: {
@@ -48,6 +49,15 @@ export default {
         sizes: '16x16',
         href: '/favicon-16x16.png',
       },
+      isStaging
+        ? {
+            name: 'robots',
+            content: 'noindex, nofollow, noarchive, nocache, noimageindex',
+          }
+        : {
+            name: 'robots',
+            content: 'index',
+          },
     ],
   },
   loading: { color: '#C62641' },
