@@ -37,7 +37,8 @@ export default Vue.extend({
 
   watch: {
     '$route.path'() {
-      this.toggleMenu();
+      document.getElementsByTagName('body')[0].style.overflowY = '';
+      this.isOpen = false;
     },
   },
 
