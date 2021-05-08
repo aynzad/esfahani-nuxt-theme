@@ -64,8 +64,22 @@ export default Vue.extend({
   },
   head() {
     const articleTitle = this.title as string;
+    const articleSubtitle = this.subtitle as string;
+    const articleTags = this.tags as string[];
     return {
       title: `${articleTitle} :: ${this.$t('home.title')}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: articleSubtitle,
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: articleTags.join(', '),
+        },
+      ],
     };
   },
   watch: {

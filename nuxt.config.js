@@ -12,6 +12,12 @@ export default {
         name: 'description',
         content: 'Alireza Esfahani Personal Website/Weblog',
       },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'Alireza, Esfahani, Personal, Website, Weblog, Developer, Front end, Front-end developer, Javascript',
+      },
       { name: 'author', content: 'Alireza Esfahani' },
       { name: 'apple-mobile-web-app-title', content: 'Alireza Esfahani' },
       { name: 'application-name', content: 'Alireza Esfahani' },
