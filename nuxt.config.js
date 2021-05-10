@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 const baseUrl = process.env.BASE_URL;
+const sitemapFactory = require('./utils/sitemapFactory');
 
 export default {
   head: {
@@ -112,8 +113,8 @@ export default {
       priority: 1,
       lastmod: new Date(),
     },
-    routes: () => {
-      const routes = [];
+    routes: async () => {
+      const routes = await sitemapFactory();
       return routes;
     },
   },
