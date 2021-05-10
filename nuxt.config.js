@@ -1,6 +1,6 @@
 import { resolve } from 'path';
-import Prismic from 'prismic-javascript';
 import feedFactory from './utils/feedFactory';
+import sitemapFactory from './utils/sitemapFactory';
 
 export default {
   head: {
@@ -114,22 +114,8 @@ export default {
       lastmod: new Date(),
     },
     routes: async () => {
-      const api = await Prismic.getApi(process.env.API_URL);
-      const responseEn = await api.query(
-        Prismic.Predicates.at('document.type', 'articles'),
-        { lang: 'en-us' }
-      );
-      const responseFa = await api.query(
-        Prismic.Predicates.at('document.type', 'articles'),
-        { lang: 'fa-ir' }
-      );
-      const faArticles = responseFa.results.map(
-        (article) => `/articles/fa/${article.uid}`
-      );
-      const enArticles = responseEn.results.map(
-        (article) => `/articles/${article.uid}`
-      );
-      return [...enArticles, ...faArticles];
+      const routes = await sitemapFactory();
+      return routes;
     },
   },
   feed: [
