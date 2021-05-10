@@ -1,6 +1,4 @@
 import { resolve } from 'path';
-import Prismic from 'prismic-javascript';
-import PrismicDom from 'prismic-dom';
 const sitemapFactory = require('./utils/sitemapFactory');
 
 const baseUrl = process.env.BASE_URL;
@@ -72,6 +70,54 @@ export default {
       },
     },
   },
+  feed: [
+    {
+      path: '/feed.xml', // The route to your feed.
+      async create(feed) {
+        feed.options = {
+          title: 'Alireza Esfahani - Articles',
+          link: `${baseUrl}/feed.xml`,
+          description: 'Alireza Esfahani Personal Weblog',
+        };
+        // const api = await Prismic.getApi(process.env.API_URL);
+        // const responseEn = await api.query(
+        //   Prismic.Predicates.at('document.type', 'articles'),
+        //   { lang: 'en-us' }
+        // );
+        // const responseFa = await api.query(
+        //   Prismic.Predicates.at('document.type', 'articles'),
+        //   { lang: 'fa-ir' }
+        // );
+        // responseFa.results.forEach((article) => {
+        //   feed.addItem({
+        //     title: PrismicDom.RichText.asText(article.data.article_title),
+        //     id: `${baseUrl}/articles/fa/${article.uid}`,
+        //     link: `${baseUrl}/articles/fa/${article.uid}`,
+        //     description: PrismicDom.RichText.asText(
+        //       article.data.article_subtitle
+        //     ),
+        //   });
+        // });
+        // responseEn.results.forEach((article) => {
+        //   feed.addItem({
+        //     title: PrismicDom.RichText.asText(article.data.article_title),
+        //     id: `${baseUrl}/articles/${article.uid}`,
+        //     link: `${baseUrl}/articles/${article.uid}`,
+        //     description: PrismicDom.RichText.asText(
+        //       article.data.article_subtitle
+        //     ),
+        //   });
+        // });
+        feed.addContributor({
+          name: 'Alireza Esfahani',
+          email: 'alireza@esfahani.dev',
+          link: `${baseUrl}/`,
+        });
+      },
+      cacheTime: 1000 * 60 * 60,
+      type: 'rss2',
+    },
+  ],
   modules: [
     '@nuxtjs/feed',
     'nuxt-i18n',
@@ -121,54 +167,6 @@ export default {
       return routes;
     },
   },
-  feed: [
-    {
-      path: '/feed.xml', // The route to your feed.
-      async create(feed) {
-        feed.options = {
-          title: 'Alireza Esfahani - Articles',
-          link: `${baseUrl}/feed.xml`,
-          description: 'Alireza Esfahani Personal Weblog',
-        };
-        const api = await Prismic.getApi(process.env.API_URL);
-        const responseEn = await api.query(
-          Prismic.Predicates.at('document.type', 'articles'),
-          { lang: 'en-us' }
-        );
-        const responseFa = await api.query(
-          Prismic.Predicates.at('document.type', 'articles'),
-          { lang: 'fa-ir' }
-        );
-        responseFa.results.forEach((article) => {
-          feed.addItem({
-            title: PrismicDom.RichText.asText(article.data.article_title),
-            id: `${baseUrl}/articles/fa/${article.uid}`,
-            link: `${baseUrl}/articles/fa/${article.uid}`,
-            description: PrismicDom.RichText.asText(
-              article.data.article_subtitle
-            ),
-          });
-        });
-        responseEn.results.forEach((article) => {
-          feed.addItem({
-            title: PrismicDom.RichText.asText(article.data.article_title),
-            id: `${baseUrl}/articles/${article.uid}`,
-            link: `${baseUrl}/articles/${article.uid}`,
-            description: PrismicDom.RichText.asText(
-              article.data.article_subtitle
-            ),
-          });
-        });
-        feed.addContributor({
-          name: 'Alireza Esfahani',
-          email: 'alireza@esfahani.dev',
-          link: `${baseUrl}/`,
-        });
-      },
-      cacheTime: 1000 * 60 * 60 * 14,
-      type: 'rss2',
-    },
-  ],
   styleResources: {
     scss: ['~/assets/css/_main.scss'],
   },
