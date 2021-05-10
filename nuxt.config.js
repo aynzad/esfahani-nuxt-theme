@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import Prismic from 'prismic-javascript';
+import feedFactory from './utils/feedFactory';
 
 export default {
   head: {
@@ -78,6 +79,7 @@ export default {
       },
     ],
     '@nuxtjs/sitemap',
+    '@nuxtjs/feed',
   ],
   i18n: {
     seo: true,
@@ -130,6 +132,16 @@ export default {
       return [...enArticles, ...faArticles];
     },
   },
+  feed: [
+    {
+      path: '/feed.xml', // The route to your feed.
+      async create(feed) {
+        await feedFactory(feed);
+      },
+      cacheTime: 1000 * 60 * 60 * 14,
+      type: 'rss2',
+    },
+  ],
   styleResources: {
     scss: ['~/assets/css/_main.scss'],
   },
