@@ -35,7 +35,7 @@ const toHtml = (body) => {
   return html;
 };
 
-export default async function (feed) {
+module.exports = async function (feed) {
   feed.options = {
     title: 'Alireza Esfahani - Articles',
     link: `${baseUrl}/feed.xml`,
@@ -77,4 +77,4 @@ export default async function (feed) {
       link: `${baseUrl}/`,
     });
   }
-}
+};

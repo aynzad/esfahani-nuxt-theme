@@ -1,6 +1,6 @@
 import Prismic from 'prismic-javascript';
 
-export default async function () {
+module.exports = async function () {
   let faArticles = [];
   let enArticles = [];
   try {
@@ -22,4 +22,4 @@ export default async function () {
     );
   } catch {}
   return [...enArticles, ...faArticles];
-}
+};

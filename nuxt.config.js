@@ -1,6 +1,6 @@
 import { resolve } from 'path';
-import feedFactory from './utils/feedFactory';
-import sitemapFactory from './utils/sitemapFactory';
+const feedFactory = require('./utils/feedFactory');
+const sitemapFactory = require('./utils/sitemapFactory');
 
 export default {
   head: {
