@@ -60,7 +60,15 @@ export default {
     ],
   },
   loading: { color: '#C62641' },
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: process.env.GOOGLE_ANALYTICS_ID,
+      },
+    ],
+  ],
   typescript: {
     typeCheck: {
       eslint: {
