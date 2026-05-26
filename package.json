@@ -16,7 +16,7 @@
   "homepage": "https://github.com/aynzad/esfahani-nuxt-theme#readme",
   "packageManager": "pnpm@10.28.1",
   "engines": {
-    "node": ">=20.18"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "nuxt dev",
