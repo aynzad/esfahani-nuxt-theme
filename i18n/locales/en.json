@@ -1,0 +1,43 @@
+{
+  "logo": "A",
+  "home": {
+    "title": "Alireza Esfahani",
+    "subtitle": "My life as a",
+    "job": "Software Engineer"
+  },
+  "menu": {
+    "articles": "Articles",
+    "projects": "Projects",
+    "github": "Github",
+    "about": "About",
+    "contact": "Contact",
+    "switchLocale": "فارسی"
+  },
+  "articles": {
+    "title": "Articles",
+    "readTime": "{min} min read"
+  },
+  "tags": {
+    "title": "{tag}`s Articles"
+  },
+  "about": {
+    "title": "About me"
+  },
+  "contact": {
+    "title": "Contact me"
+  },
+  "loadMore": "Load More",
+  "error": {
+    "404": {
+      "title": "Not Found",
+      "description": "You are looking for a page that does not exist yet!"
+    },
+    "500": {
+      "title": "Server Error",
+      "description": "Somehow, something, somewhere went wrong!"
+    }
+  },
+  "under_construction": {
+    "title": "Under Construction"
+  }
+}
