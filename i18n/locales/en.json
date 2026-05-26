@@ -17,6 +17,9 @@
     "title": "Articles",
     "readTime": "{min} min read"
   },
+  "projects": {
+    "demo": "Demo ↗"
+  },
   "tags": {
     "title": "{tag}`s Articles"
   },

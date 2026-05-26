@@ -37,11 +37,15 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    githubToken: '',
+    geminiApiKey: '',
+    geminiModel: 'gemini-2.5-flash',
     public: {
       apiUrl: '',
       pageSize: 10,
       isStaging: false,
       googleAnalyticsId: '',
+      githubUsername: '',
     },
   },
 
