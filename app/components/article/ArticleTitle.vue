@@ -1,35 +1,53 @@
 <script setup lang="ts">
-import ArticleTags from './ArticleTags.vue'
+import ArticleTags from './ArticleTags.vue';
 
 const props = withDefaults(
   defineProps<{
-    hasLink?: boolean
-    id: string
-    title: string
-    subtitle?: string
-    date: string
-    readTime?: number
-    tags?: string[]
+    hasLink?: boolean;
+    id?: string;
+    title: string;
+    subtitle?: string;
+    date: string;
+    readTime?: number;
+    tags?: string[];
+    // When set, the title links to this external URL (opens in a new tab) instead of an internal route.
+    externalHref?: string;
+    // Rendered in place of read time (e.g. a project's GitHub star count).
+    stars?: number;
+    // Render tags as plain text instead of links (used for project topics).
+    noLinkTags?: boolean;
+    // When set, a "Demo" link (opening in a new tab) is shown in the footer.
+    demoHref?: string;
+    demoLabel?: string;
   }>(),
   {
     hasLink: false,
+    id: '',
     subtitle: '',
     readTime: undefined,
     tags: () => [],
-  },
-)
+    externalHref: undefined,
+    stars: undefined,
+    noLinkTags: false,
+    demoHref: undefined,
+    demoLabel: 'Demo',
+  }
+);
 
-const localePath = useLocalePath()
-const { locale } = useI18n()
+const localePath = useLocalePath();
+const { locale } = useI18n();
+
+// External-link arrow, mirrored for RTL (Farsi) so it points away from the text.
+const demoArrow = computed(() => (locale.value === 'fa' ? '↖' : '↗'));
 
 const firstLetter = (title: string) => {
   const sliced = title
     .replace(/[^A-Za-zآ-ی]/g, '')
     .slice(0, 1)
-    .toUpperCase()
-  if (sliced === 'آ' || sliced === 'ا') return 'الف'
-  return sliced
-}
+    .toUpperCase();
+  if (sliced === 'آ' || sliced === 'ا') return 'الف';
+  return sliced;
+};
 
 const parseDate = (
   isoString: string,
@@ -38,17 +56,39 @@ const parseDate = (
     month: 'long',
     day: 'numeric',
     year: 'numeric',
-  },
-) => new Intl.DateTimeFormat(locales, options).format(new Date(isoString))
+  }
+) => new Intl.DateTimeFormat(locales, options).format(new Date(isoString));
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>
 
 <template>
   <div class="article-title">
-    <header>
-      <span aria-hidden class="first-letter">{{ firstLetter(props.title) }}</span>
-      <h2 v-if="hasLink" class="title">
+    <header class="article-header">
+      <span aria-hidden class="first-letter">{{
+        firstLetter(props.title)
+      }}</span>
+      <h2 v-if="externalHref" class="title">
+        <a
+          :href="externalHref"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`${title}-${subtitle}`"
+        >
+          {{ title }}
+        </a>
+        <a
+          v-if="demoHref"
+          :href="demoHref"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="demo-icon"
+          :aria-label="demoLabel"
+        >
+          {{ demoArrow }}
+        </a>
+      </h2>
+      <h2 v-else-if="hasLink" class="title">
         <NuxtLink
           :to="localePath({ name: 'articles-id', params: { id } })"
           :aria-label="`${title}-${subtitle}`"
@@ -56,7 +96,7 @@ const { t } = useI18n()
           {{ title }}
         </NuxtLink>
       </h2>
-      <h1 v-if="!hasLink" class="title">
+      <h1 v-else class="title">
         {{ title }}
       </h1>
       <h3 class="subtitle">{{ subtitle }}</h3>
@@ -65,10 +105,22 @@ const { t } = useI18n()
       <time class="date" :datetime="date">
         {{ parseDate(date, locale) }}
       </time>
-      <ArticleTags :tags="tags" />
+      <ArticleTags :tags="tags" :no-link="noLinkTags" />
       <time v-if="readTime" class="read-time">
         {{ t('articles.readTime', { min: readTime }) }}
       </time>
+      <span v-else-if="stars" class="read-time" aria-label="stars">
+        ★ {{ stars }}
+      </span>
+      <a
+        v-if="demoHref"
+        :href="demoHref"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="demo-link"
+      >
+        {{ demoLabel }}
+      </a>
     </footer>
   </div>
 </template>
@@ -85,6 +137,19 @@ const { t } = useI18n()
     padding: 30px 8px 0;
   }
 }
+.article-header {
+  min-height: 135px;
+  @include breakpoint(xl, max) {
+    min-height: 125px;
+  }
+  @include breakpoint(md, max) {
+    min-height: 110px;
+  }
+  @include breakpoint(sm, max) {
+    min-height: 85px;
+  }
+}
+
 .first-letter {
   position: absolute;
   left: -96px;
@@ -152,6 +217,17 @@ const { t } = useI18n()
     }
   }
 }
+.demo-icon {
+  // em so the arrow scales with the title size across breakpoints.
+  font-size: 0.45em;
+  vertical-align: super;
+  line-height: 1;
+  margin-inline-start: 10px;
+  color: var(--text-light);
+  &:hover {
+    color: var(--primary-main);
+  }
+}
 @include lang(fa) {
   .title {
     line-height: 50px;
@@ -205,20 +281,6 @@ footer {
   @include breakpoint(xs, max) {
     font-size: 11px;
   }
-  &:after {
-    content: '';
-    background-color: var(--text-main);
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    margin-left: 18px;
-    margin-right: 18px;
-    display: inline-block;
-    @include breakpoint(xs, max) {
-      margin-left: 2px;
-      margin-right: 4px;
-    }
-  }
 }
 
 .read-time {
@@ -228,6 +290,35 @@ footer {
   color: var(--text-light);
   @include breakpoint(xs, max) {
     font-size: 11px;
+  }
+  // Leading dot separates this segment from the previous one; shown only when this segment renders.
+  &:before {
+    content: '';
+    background-color: var(--text-main);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-left: 18px;
+    margin-right: 18px;
+    display: inline-block;
+    @include breakpoint(xs, max) {
+      margin-left: 0px;
+      margin-right: 6px;
+    }
+  }
+}
+
+.demo-link {
+  display: inline-block;
+  font-size: 14px;
+  font-variation-settings: 'wght' var(--weight-regular);
+  color: var(--text-light);
+  transition: 0.4s all ease;
+  @include breakpoint(xs, max) {
+    font-size: 11px;
+  }
+  &:hover {
+    color: var(--primary-main);
   }
   &:before {
     content: '';
