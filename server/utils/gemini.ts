@@ -24,6 +24,9 @@ async function callGemini(texts: string[], { apiKey, model }: TranslateOptions):
   const { output } = await generateText({
     model: google(model),
     temperature: 0.2,
+    // Disable Gemini 2.5 "thinking" — translation needs none, and it adds many seconds of latency
+    // (caused the Vercel 10s function timeout on /fa/projects).
+    providerOptions: { google: { thinkingConfig: { thinkingBudget: 0 } } },
     output: Output.object({ schema: translationSchema }),
     prompt: [
       'Translate each string in the following JSON array from English to natural, fluent Persian (Farsi).',
