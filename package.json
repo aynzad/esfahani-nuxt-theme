@@ -1,36 +1,43 @@
 {
   "name": "esfahani-nuxt-theme",
-  "version": "1.0.0",
-  "description": "A Personal website/weblog theme based on Nuxtjs & Prismic for esfahani.dev",
-  "author": "Alireza Esfahani <aynzad@gmail.com>",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A personal website/weblog theme based on Nuxt & Prismic for esfahani.dev",
+  "author": "Alireza Esfahani <alireza@esfahani.dev>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.1",
+  "engines": {
+    "node": ">=20.18"
+  },
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "start": "nuxt start",
-    "lint": "eslint --ext .ts,.js,.vue ."
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@nuxtjs/sitemap": "^2.4.0",
-    "@nuxtjs/style-resources": "^1.0.0",
-    "eslint": "^7.18.0",
-    "nuxt": "2.15.2",
-    "nuxt-highlightjs": "^1.0.1",
-    "nuxt-i18n": "^6.18.0",
-    "prettier": "^2.2.1",
-    "prismic-dom": "^2.2.4",
-    "prismic-javascript": "^3.0.2"
+    "@nuxtjs/i18n": "^9.5.0",
+    "@nuxtjs/mdc": "^0.13.0",
+    "@nuxtjs/prismic": "^5.0.0",
+    "@nuxtjs/sitemap": "^7.0.0",
+    "@prismicio/client": "^7.10.0",
+    "@prismicio/vue": "^5.1.0",
+    "nuxt": "^4.0.0",
+    "nuxt-gtag": "^4.0.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
-    "@nuxt/types": "2.15.2",
-    "@nuxt/typescript-build": "^2.0.4",
-    "@nuxtjs/eslint-config-typescript": "^5.0.0",
-    "@nuxtjs/google-analytics": "^2.4.0",
-    "@nuxtjs/vercel-builder": "^0.18.1",
-    "@types/prismic-dom": "^2.1.1",
-    "fibers": "^5.0.0",
-    "nodemon": "^1.18.9",
-    "sass": "^1.32.8",
-    "sass-loader": "10"
+    "@nuxt/eslint": "^1.0.0",
+    "@nuxt/fonts": "^0.14.0",
+    "@types/node": "^25.9.1",
+    "eslint": "^9.18.0",
+    "sass": "^1.83.0",
+    "typescript": "^5.6.0",
+    "vue-tsc": "^3.3.2"
   }
 }

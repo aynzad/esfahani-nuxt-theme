@@ -1,0 +1,99 @@
+@use 'sass:map';
+
+// A map of breakpoints.
+$breakpoints: (
+  xxs: 321px,
+  xs: 426px,
+  sm: 576px,
+  md: 769px,
+  lg: 1025px,
+  xl: 1440px,
+);
+
+@mixin breakpoint($breakpoint, $direction) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
+
+    @if $direction == max {
+      @media (max-width: ($breakpoint-value - 1)) {
+        @content;
+      }
+    } @else if $direction == min {
+      @media (min-width: $breakpoint-value) {
+        @content;
+      }
+    } @else {
+      @media ($direction: $breakpoint-value) {
+        @content;
+      }
+    }
+  } @else {
+    @if $direction == max {
+      @media (max-width: $breakpoint) {
+        @content;
+      }
+    } @else if $direction == min {
+      @media (min-width: $breakpoint) {
+        @content;
+      }
+    } @else {
+      @media ($direction: $breakpoint) {
+        @content;
+      }
+    }
+  }
+}
+
+$locales: (
+  'fa': 'fa-IR',
+  'en': 'en-US',
+);
+
+@mixin lang($locale) {
+  @if map.has-key($locales, $locale) {
+    $locale-value: map.get($locales, $locale);
+    html[lang='#{$locale-value}'] {
+      @content;
+    }
+  }
+}
+
+@mixin reduceMotion() {
+  @media (prefers-reduced-motion) {
+    @content;
+  }
+}
+
+p {
+  a {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-weight: 600;
+    &:active,
+    &:hover {
+      outline-width: 0;
+      &:after {
+        left: 0;
+        bottom: -4px;
+        width: calc(100% + 6px);
+        margin: 0 -3px;
+        height: calc(100% + 4px);
+      }
+    }
+    &:after {
+      border-radius: 2px;
+      content: '';
+      background: var(--primary-light);
+      position: absolute;
+      left: 10px;
+      bottom: -4px;
+      margin: 0;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      z-index: -1;
+      transition: 0.35s cubic-bezier(0.25, 0.1, 0, 2.05);
+    }
+  }
+}
