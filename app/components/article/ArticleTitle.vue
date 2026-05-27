@@ -57,7 +57,15 @@ const parseDate = (
     day: 'numeric',
     year: 'numeric',
   }
-) => new Intl.DateTimeFormat(locales, options).format(new Date(isoString));
+) => {
+  const date = new Date(isoString);
+  // Unpublished drafts (e.g. in Prismic preview) have no publication date — an empty
+  // or invalid value would make Intl.DateTimeFormat throw "Invalid time value".
+  if (Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat(locales, options).format(date);
+};
+
+const formattedDate = computed(() => parseDate(props.date, locale.value));
 
 const { t } = useI18n();
 </script>
@@ -102,8 +110,8 @@ const { t } = useI18n();
       <h3 class="subtitle">{{ subtitle }}</h3>
     </header>
     <footer>
-      <time class="date" :datetime="date">
-        {{ parseDate(date, locale) }}
+      <time v-if="formattedDate" class="date" :datetime="date">
+        {{ formattedDate }}
       </time>
       <ArticleTags :tags="tags" :no-link="noLinkTags" />
       <time v-if="readTime" class="read-time">
