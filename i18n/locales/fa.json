@@ -15,7 +15,8 @@
   },
   "articles": {
     "title": "نوشته‌ها",
-    "readTime": "خواندن {min} دقیقه"
+    "readTime": "خواندن {min} دقیقه",
+    "subscribe": "اشتراک از طریق RSS"
   },
   "projects": {
     "demo": "پیش‌نمایش ↖"

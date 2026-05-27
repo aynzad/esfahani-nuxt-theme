@@ -15,7 +15,8 @@
   },
   "articles": {
     "title": "Articles",
-    "readTime": "{min} min read"
+    "readTime": "{min} min read",
+    "subscribe": "Subscribe via RSS"
   },
   "projects": {
     "demo": "Demo ↗"
