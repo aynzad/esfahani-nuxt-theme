@@ -6,17 +6,25 @@ withDefaults(
 
 const localePath = useLocalePath()
 
-const onClick = async () => {
-  await navigateTo(localePath({ name: 'index' }))
-}
-
 const { t } = useI18n()
 </script>
 
 <template>
-  <div aria-hidden class="logo" :class="{ big: isBig }" @click="onClick">
+  <!--
+    A single element morphs between the small home link (interior pages) and the giant
+    decorative background letter (home). When big it is purely decorative, so it is hidden
+    from assistive tech and removed from the tab order; when small it is a real home link.
+  -->
+  <NuxtLink
+    :to="localePath({ name: 'index' })"
+    class="logo"
+    :class="{ big: isBig }"
+    :aria-hidden="isBig ? 'true' : undefined"
+    :tabindex="isBig ? -1 : undefined"
+    :aria-label="isBig ? undefined : t('a11y.home')"
+  >
     {{ t('logo') }}
-  </div>
+  </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
@@ -31,6 +39,11 @@ const { t } = useI18n()
   left: 50%;
   position: absolute;
   z-index: 1;
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
   // Vertical position lives in translateY (GPU-composited) instead of `top`, so the descent
   // animates on the compositor. The logo sits in the vertically-centered `.nav`, so a fixed
   // offset from top:0 tracks the viewport centre as the screen size changes.
@@ -70,6 +83,8 @@ const { t } = useI18n()
   transform: translate(-50%, calc(-50% + 58px));
   left: 50%;
   cursor: default;
+  // Decorative background letter — clicks should pass through to the page.
+  pointer-events: none;
 }
 
 @include breakpoint(lg, max) {

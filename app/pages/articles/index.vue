@@ -61,6 +61,17 @@ const loadMore = async (nextPage = 1) => {
 useHead({
   title: () => `${t('articles.title')} :: ${t('home.title')}`,
 })
+useSeoMeta({
+  description: () => t('seo.articles'),
+  ogTitle: () => t('articles.title'),
+  twitterTitle: () => t('articles.title'),
+  twitterDescription: () => t('seo.articles'),
+})
+defineOgImage('Default', {
+  title: t('articles.title'),
+  description: t('seo.articles'),
+  locale: locale.value,
+})
 </script>
 
 <template>

@@ -1,7 +1,16 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <div>
-    <Navbar />
-    <slot />
+    <a class="skip-link" href="#main-content">{{ t('a11y.skipToContent') }}</a>
+    <header>
+      <Navbar />
+    </header>
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
   </div>
 </template>
 
@@ -9,7 +18,12 @@
 :root {
   --primary-main: #c62641;
   --primary-dark: #b2223a;
+  // Darker red that clears WCAG AA (4.5:1) on the darker mobile-menu gray (#cecdcd),
+  // where --primary-dark only reaches ~4.16:1. Used for link hover inside the mobile menu.
+  --primary-text: #9e1b30;
   --primary-light: #f0d9db;
+  // Focus indicator for keyboard navigation; the brand red is ~5:1 on the page background.
+  --focus-ring: var(--primary-main);
   --text-main: #2b4338;
   --text-light: #4e5d56;
   --text-bg: #ffe0e0;
@@ -75,6 +89,43 @@ html {
 
 a {
   text-decoration: none;
+}
+
+// Visually hidden until focused — keyboard users can jump straight to the main content.
+.skip-link {
+  position: absolute;
+  inset-inline-start: 8px;
+  top: -80px;
+  z-index: var(--z-index-logo);
+  padding: 10px 16px;
+  background: var(--background-main);
+  color: var(--text-main);
+  border: 2px solid var(--primary-main);
+  border-radius: 4px;
+  transition: top 0.2s ease-in-out;
+  &:focus {
+    top: 8px;
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+// #main-content is focused programmatically via the skip link; suppress the focus ring
+// on the wrapper itself (the content inside manages its own focus).
+#main-content:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 abbr[title] {

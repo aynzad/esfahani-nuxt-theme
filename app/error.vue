@@ -17,7 +17,8 @@ useHead({
     <section class="error">
       <div class="wrapper">
         <span>{{ errorCode }}</span>
-        <img v-if="errorCode === 404" src="/gonjeshk.gif" alt="gonjeshk">
+        <!-- Decorative flying bird; the 404 is conveyed by the heading and text below. -->
+        <img v-if="errorCode === 404" src="/gonjeshk.gif" alt="" aria-hidden="true">
         <h1>{{ t(`error.${errorCode}.title`) }}</h1>
         <p>{{ t(`error.${errorCode}.description`) }}</p>
       </div>

@@ -8,19 +8,28 @@ withDefaults(
 )
 
 const emit = defineEmits<{ click: [] }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
-  <div
+  <button
     v-if="isShow"
+    type="button"
     class="humberger-icon"
     :class="{ open: isOpen }"
+    :aria-label="isOpen ? t('a11y.closeMenu') : t('a11y.openMenu')"
+    :aria-expanded="isOpen"
+    aria-controls="primary-navigation"
     @click="emit('click')"
   />
 </template>
 
 <style lang="scss" scoped>
 .humberger-icon {
+  appearance: none;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
   z-index: var(--z-index-logo);
   position: relative;
@@ -28,7 +37,12 @@ const emit = defineEmits<{ click: [] }>()
   top: 2px;
   width: 24px;
   height: 18px;
+  border: 0;
   border-bottom: 2px solid var(--text-main);
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 8px;
+  }
   &:after,
   &:before {
     content: '';

@@ -28,6 +28,17 @@ const content = computed(() => (page.value ? asHTML(page.value.data.content) : '
 useHead({
   title: () => `${t('contact.title')} :: ${t('home.title')}`,
 })
+useSeoMeta({
+  description: () => t('seo.contact'),
+  ogTitle: () => t('contact.title'),
+  twitterTitle: () => t('contact.title'),
+  twitterDescription: () => t('seo.contact'),
+})
+defineOgImage('Default', {
+  title: t('contact.title'),
+  description: t('seo.contact'),
+  locale: locale.value,
+})
 </script>
 
 <template>

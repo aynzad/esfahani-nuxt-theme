@@ -1,6 +1,11 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
-  <div class="loadingio-spinner-ripple">
-    <div class="loader">
+  <div class="loadingio-spinner-ripple" role="status">
+    <span class="sr-only">{{ t('a11y.loading') }}</span>
+    <div class="loader" aria-hidden="true">
       <div />
       <div />
     </div>
