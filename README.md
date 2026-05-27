@@ -1,4 +1,4 @@
-<p align="center"><img align="center" style="width:320px" src="./static/android-chrome-512x512.png"/></p><br/>
+<p align="center"><img align="center" style="width:320px" src="./public/android-chrome-512x512.png"/></p><br/>
 <p align="center">
     <span><img src="https://badgen.net/badge/license/MIT/blue" alt="license"></span>
     <span><img src="https://badgen.net/github/releases/aynzad/esfahani-nuxt-theme" alt="release"></span>
@@ -9,12 +9,14 @@
 
 # Esfahani Theme
 
-The **Esfahani Theme** is a multilingue NuxtJs theme which aims to modernize, organize and enhance some aspects of personal website or weblog themes development. 
+The **Esfahani Theme** is a multilingue NuxtJs theme which aims to modernize, organize and enhance some aspects of personal website or weblog themes development.
 
 ## Live Demo
+
 Live production demo is available on [esfahani.dev](https://esfahani.dev).
 
 ## Features
+
 - **Bilingual** — English and Farsi (RTL) via `@nuxtjs/i18n`.
 - **Articles** — authored in Prismic, rendered with Shiki code highlighting and per-locale content.
 - **Projects** — auto-populated from a GitHub account's public repos (stars, topics, demo links).
@@ -24,6 +26,7 @@ Live production demo is available on [esfahani.dev](https://esfahani.dev).
 - **Typed & linted** — TypeScript throughout, ESLint flat config.
 
 ## How it works:
+
 - [Nuxt 4](https://nuxt.com/) (Vue 3, Nitro) SSR
 - [Prismic](https://prismic.io/) headless CMS for articles/about/contact
 - [GitHub REST API](https://docs.github.com/rest) powers the **Projects** page (public repos)
@@ -50,9 +53,10 @@ Then run it:
 $ pnpm dev      # dev server
 $ pnpm build    # production build
 ```
+
 ### Create a `Prismic` repository
 
-1. Create your [prismic](http://prismic.io/dashboard/signup) account. 
+1. Create your [prismic](http://prismic.io/dashboard/signup) account.
 1. [Create a repository](https://prismic.io/dashboard/new-repository)
 1. Set `NUXT_PUBLIC_API_URL` in `.env` to your repository API endpoint.
 1. Create a `about` custom type, using [about.json](./.prismic-custom-types/about.json) file.
@@ -63,14 +67,14 @@ $ pnpm build    # production build
 
 Configured in `.env` (see [.env.sample](./.env.sample)):
 
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `NUXT_PUBLIC_API_URL` | yes | Prismic repository API endpoint |
-| `NUXT_PUBLIC_GITHUB_USERNAME` | for Projects | GitHub account whose public repos are listed |
-| `NUXT_GITHUB_TOKEN` | no | Read-only PAT to lift GitHub's 60 req/hr limit |
-| `NUXT_GEMINI_API_KEY` | no | Gemini key to auto-translate Projects into Farsi (empty = Farsi shows English) |
-| `NUXT_GEMINI_MODEL` | no | Override Gemini model (default `gemini-2.5-flash`) |
-| `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` | no | GA4 measurement id (`G-XXXX`) |
+| Variable                          | Required     | Purpose                                                                        |
+| --------------------------------- | ------------ | ------------------------------------------------------------------------------ |
+| `NUXT_PUBLIC_API_URL`             | yes          | Prismic repository API endpoint                                                |
+| `NUXT_PUBLIC_GITHUB_USERNAME`     | for Projects | GitHub account whose public repos are listed                                   |
+| `NUXT_GITHUB_TOKEN`               | no           | Read-only PAT to lift GitHub's 60 req/hr limit                                 |
+| `NUXT_GEMINI_API_KEY`             | no           | Gemini key to auto-translate Projects into Farsi (empty = Farsi shows English) |
+| `NUXT_GEMINI_MODEL`               | no           | Override Gemini model (default `gemini-2.5-flash`)                             |
+| `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` | no           | GA4 measurement id (`G-XXXX`)                                                  |
 
 ### Projects page
 
@@ -79,9 +83,10 @@ The Projects page lists the public repositories of `NUXT_PUBLIC_GITHUB_USERNAME`
 ### Deploy on `Vercel` _(optional)_
 
 You can use [Vercel](https://vercel.com/) for CI and CD your own fork of this project.
-1. Create your [Vercel](https://vercel.com/signup) account. 
+
+1. Create your [Vercel](https://vercel.com/signup) account.
 1. [Create a Project](https://vercel.com/new) and import **your** git repository.
- 
+
 ## Contributing
 
 Great that you are considering supporting the project. You have a lot of ways to help me grow. I appreciate all contributions, even the smallest.
@@ -93,10 +98,11 @@ Great that you are considering supporting the project. You have a lot of ways to
 - Tell about project around your community.
 
 ## TODO
-- Config test packages (like `vitest`).
-- Add unit test.
-- Add RSS feed.
-- Improve SEO.
+
+- [x] Improve SEO and accessibility
+- [] Config test packages (like `vitest`) and Add unit test
+- [] Add RSS feed.
+
 ## License
 
 It is licensed under the [MIT license](http://opensource.org/licenses/MIT).

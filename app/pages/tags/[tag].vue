@@ -64,6 +64,26 @@ const loadMore = async (nextPage = 1) => {
 useHead({
   title: () => `${t('tags.title', { tag: tagParam.value })} :: ${t('home.title')}`,
 })
+useSeoMeta({
+  description: () => t('seo.tags', { tag: tagParam.value }),
+  ogTitle: () => t('tags.title', { tag: tagParam.value }),
+  twitterTitle: () => t('tags.title', { tag: tagParam.value }),
+  twitterDescription: () => t('seo.tags', { tag: tagParam.value }),
+})
+defineOgImage('Default', {
+  title: t('tags.title', { tag: tagParam.value }),
+  description: t('seo.tags', { tag: tagParam.value }),
+  locale: locale.value,
+})
+useSchemaOrg([
+  defineBreadcrumb({
+    itemListElement: [
+      { name: t('home.title'), item: localePath('/') },
+      { name: t('articles.title'), item: localePath('/articles') },
+      { name: t('tags.title', { tag: tagParam.value }) },
+    ],
+  }),
+])
 </script>
 
 <template>

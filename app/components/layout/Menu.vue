@@ -12,10 +12,16 @@ const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
 const switchLocaleTo = computed<'fa' | 'en'>(() => (locale.value === 'fa' ? 'en' : 'fa'))
+const switchLocaleLang = computed(() => (switchLocaleTo.value === 'fa' ? 'fa-IR' : 'en-US'))
 </script>
 
 <template>
-  <div class="menu" :class="{ big: isBig, open: isOpen }">
+  <nav
+    id="primary-navigation"
+    class="menu"
+    :class="{ big: isBig, open: isOpen }"
+    :aria-label="t('a11y.menuLabel')"
+  >
     <div class="first">
       <NuxtLink :to="localePath('/articles')">
         {{ t('menu.articles') }}
@@ -23,16 +29,21 @@ const switchLocaleTo = computed<'fa' | 'en'>(() => (locale.value === 'fa' ? 'en'
       <NuxtLink :to="localePath('/projects')">
         {{ t('menu.projects') }}
       </NuxtLink>
-      <a href="https://github.com/aynzad">{{ t('menu.github') }}</a>
+      <a href="https://github.com/aynzad" rel="me noopener">{{ t('menu.github') }}</a>
     </div>
     <div class="second">
       <NuxtLink :to="localePath('/about')">{{ t('menu.about') }}</NuxtLink>
       <NuxtLink :to="localePath('/contact')">{{ t('menu.contact') }}</NuxtLink>
-      <NuxtLink :to="switchLocalePath(switchLocaleTo)">
+      <NuxtLink
+        :to="switchLocalePath(switchLocaleTo)"
+        :lang="switchLocaleLang"
+        :hreflang="switchLocaleLang"
+        :aria-label="t('a11y.switchToLocale')"
+      >
         {{ t('menu.switchLocale') }}
       </NuxtLink>
     </div>
-  </div>
+  </nav>
 </template>
 
 <style lang="scss" scoped>
@@ -47,7 +58,9 @@ const switchLocaleTo = computed<'fa' | 'en'>(() => (locale.value === 'fa' ? 'en'
     max-width: unset;
     margin: 0;
     padding: 0 16px;
-    @include breakpoint(xs, max) {
+    // Stack the two link groups below `sm`; in a single row they overflow horizontally
+    // on phones wider than the old `xs` cutoff (e.g. 430px), causing a sideways scroll.
+    @include breakpoint(sm, max) {
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -77,6 +90,11 @@ a {
   &:hover {
     color: var(--primary-dark);
   }
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
 }
 .first {
   justify-content: flex-start;
@@ -105,10 +123,20 @@ a {
       justify-content: flex-start;
       transform-origin: 0% 0%;
       transform: translate(-100%, 0);
-      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+      // `visibility: hidden` keeps the off-screen links out of the tab order and the
+      // accessibility tree on mobile; delayed on close so it doesn't cut the slide-out.
+      visibility: hidden;
+      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+        visibility 0s linear 0.5s;
+      // On the darker mobile-menu gray, --primary-dark is only ~4.16:1; use the AA-safe red.
+      a:hover {
+        color: var(--primary-text);
+      }
       &.open {
         top: 0;
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+        visibility: visible;
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+          visibility 0s linear 0s;
         transform: translate(0, 0);
       }
       & > div {

@@ -42,5 +42,22 @@
   },
   "under_construction": {
     "title": "Under Construction"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "menuLabel": "Primary",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "home": "Alireza Esfahani — home",
+    "loading": "Loading…",
+    "switchToLocale": "Switch to Persian"
+  },
+  "seo": {
+    "home": "Alireza Esfahani — software engineer. Articles, projects, and notes on life and web development.",
+    "articles": "Articles by Alireza Esfahani on life, software engineering, front-end, and web development.",
+    "projects": "Open-source projects and software built by Alireza Esfahani.",
+    "about": "About Alireza Esfahani — Software engineer",
+    "contact": "Get in touch with Alireza Esfahani.",
+    "tags": "Articles tagged \"{tag}\" by Alireza Esfahani."
   }
 }

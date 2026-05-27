@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/prismic',
     '@nuxtjs/sitemap',
+    'nuxt-schema-org',
+    'nuxt-og-image',
+    'nuxt-seo-utils',
     '@nuxt/fonts',
     'nuxt-gtag',
     '@nuxtjs/mdc',
@@ -46,6 +49,9 @@ export default defineNuxtConfig({
       isStaging: false,
       googleAnalyticsId: '',
       githubUsername: '',
+      // Canonical site origin (no trailing slash), e.g. https://esfahani.dev.
+      // Overridable at runtime via NUXT_PUBLIC_SITE_URL.
+      siteUrl: '',
     },
   },
 
@@ -56,6 +62,9 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Alireza Esfahani',
+      // Pages already include " :: Alireza Esfahani"; pass the title through unchanged so
+      // nuxt-seo-utils doesn't also append "| <site name>" and duplicate the brand name.
+      titleTemplate: '%s',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -66,20 +75,19 @@ export default defineNuxtConfig({
         {
           name: 'keywords',
           content:
-            'Alireza, Esfahani, Personal, Website, Weblog, Developer, Front end, Front-end developer, Javascript',
+            'Alireza, Esfahani, Personal, Website, Weblog, Developer, Engineer, Front end, Front-end developer, Software Engineer, Software, Javascript',
         },
         { name: 'author', content: 'Alireza Esfahani' },
         { name: 'apple-mobile-web-app-title', content: 'Alireza Esfahani' },
         { name: 'application-name', content: 'Alireza Esfahani' },
         { name: 'msapplication-TileColor', content: '#C62641' },
         { name: 'theme-color', content: '#C62641' },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: '/meta-image-en.png' },
-        { name: 'twitter:image', content: '/meta-image-en.png' },
+        // og:type, og:image and twitter:* are managed per-page by nuxt-seo-utils and
+        // nuxt-og-image (dynamic images via the Takumi renderer).
       ],
       link: [
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
         { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#C62641' },
         { rel: 'manifest', href: '/site.webmanifest' },
@@ -89,6 +97,8 @@ export default defineNuxtConfig({
   },
 
   i18n: {
+    // Absolute base so i18n can emit absolute hreflang/canonical alternates for SEO.
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL,
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
     locales: [
@@ -118,8 +128,18 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'https://esfahani.dev',
+    // Read from NUXT_PUBLIC_SITE_URL; powers sitemap, canonical, og:image and schema URLs.
+    url: process.env.NUXT_PUBLIC_SITE_URL,
     name: 'Alireza Esfahani',
+  },
+
+  ogImage: {
+    // The renderer is selected per-component by the `.takumi.vue` suffix (Takumi handles
+    // RTL/Persian). Vazirmatn is available to it via the global @nuxt/fonts registration.
+    defaults: {
+      width: 1200,
+      height: 630,
+    },
   },
 
   gtag: {

@@ -35,13 +35,25 @@ const content = computed(() =>
 useHead({
   title: () => `${t('about.title')} :: ${t('home.title')}`,
 });
+useSeoMeta({
+  description: () => t('seo.about'),
+  ogTitle: () => t('about.title'),
+  twitterTitle: () => t('about.title'),
+  twitterDescription: () => t('seo.about'),
+});
+defineOgImage('Default', {
+  title: t('about.title'),
+  description: t('seo.about'),
+  locale: locale.value,
+});
 </script>
 
 <template>
   <article class="container about">
     <SectionTitle :title="t('about.title')" />
     <img v-if="picture" :src="picture.url" :alt="name" />
-    <h1>{{ name }}</h1>
+    <!-- h2 under the SectionTitle h1 ("About me") to keep one h1 per page. -->
+    <h2>{{ name }}</h2>
     <!-- eslint-disable-next-line vue/no-v-html -->
     <div class="content" v-html="content" />
     <footer>
@@ -59,7 +71,7 @@ useHead({
     margin-top: 40px;
     border-radius: 50%;
   }
-  h1 {
+  h2 {
     font-size: 36px;
     text-align: center;
     margin-top: 15px;

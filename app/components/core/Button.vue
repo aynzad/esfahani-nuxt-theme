@@ -45,12 +45,16 @@ const onClick = (event: MouseEvent) => emit('click', event)
 <style lang="scss" scoped>
 button {
   border: 1px solid var(--button-border-color);
-  color: var(--border-color);
+  color: var(--button-color);
   text-align: center;
-  outline: none;
   cursor: pointer;
   font-family: var(--main-font);
   position: relative;
+  background: transparent;
+  &:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
   &:after {
     position: absolute;
     transition: transform 0.3s ease-in;

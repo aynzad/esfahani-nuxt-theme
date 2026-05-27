@@ -13,6 +13,17 @@ const { data: projects } = await useFetch<IProject[]>('/api/projects', {
 useHead({
   title: () => `${t('menu.projects')} :: ${t('home.title')}`,
 })
+useSeoMeta({
+  description: () => t('seo.projects'),
+  ogTitle: () => t('menu.projects'),
+  twitterTitle: () => t('menu.projects'),
+  twitterDescription: () => t('seo.projects'),
+})
+defineOgImage('Default', {
+  title: t('menu.projects'),
+  description: t('seo.projects'),
+  locale: locale.value,
+})
 </script>
 
 <template>

@@ -39,7 +39,31 @@ useHead({
 useSeoMeta({
   description: () => subtitle.value,
   keywords: () => tags.value.join(', '),
+  ogType: 'article',
+  ogTitle: () => title.value,
+  twitterTitle: () => title.value,
+  twitterDescription: () => subtitle.value,
 })
+defineOgImage('Default', {
+  title: title.value,
+  description: subtitle.value,
+  locale: locale.value,
+})
+useSchemaOrg([
+  defineArticle({
+    headline: title.value,
+    description: subtitle.value,
+    datePublished: date.value || undefined,
+    author: { name: t('home.title') },
+  }),
+  defineBreadcrumb({
+    itemListElement: [
+      { name: t('home.title'), item: localePath('/') },
+      { name: t('articles.title'), item: localePath('/articles') },
+      { name: title.value },
+    ],
+  }),
+])
 </script>
 
 <template>
