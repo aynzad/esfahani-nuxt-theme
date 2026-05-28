@@ -88,8 +88,8 @@ export default defineNuxtConfig({
         { name: 'author', content: 'Alireza Esfahani' },
         { name: 'apple-mobile-web-app-title', content: 'Alireza Esfahani' },
         { name: 'application-name', content: 'Alireza Esfahani' },
-        { name: 'msapplication-TileColor', content: '#C62641' },
-        { name: 'theme-color', content: '#C62641' },
+        { name: 'msapplication-TileColor', content: '#f5f5f5' },
+        { name: 'theme-color', content: '#f5f5f5' },
         // og:type, og:image and twitter:* are managed per-page by nuxt-seo-utils and
         // nuxt-og-image (dynamic images via the Takumi renderer).
       ],
