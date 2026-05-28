@@ -99,9 +99,11 @@ Great that you are considering supporting the project. You have a lot of ways to
 
 ## TODO
 
+- [x] Implement projects page
 - [x] Improve SEO and accessibility
 - [x] Add RSS feed (RSS 2.0, Atom, JSON Feed; per-locale).
-- [] Config test packages (like `vitest`) and Add unit test
+- [x] Config test packages (like `vitest`) and Add unit test
+- [ ] Make name, job description, and similar fields dynamic by pulling them from Prismic
 
 ## License
 
