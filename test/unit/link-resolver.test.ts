@@ -29,4 +29,28 @@ describe('linkResolver', () => {
       linkResolver(doc({ type: 'articles', uid: 'x', isBroken: true })),
     ).toBe('/not-found')
   })
+
+  it('prefixes Farsi (fa-ir) documents with /fa', () => {
+    expect(
+      linkResolver(
+        doc({ type: 'articles', uid: 'hello-world', lang: 'fa-ir' }),
+      ),
+    ).toBe('/fa/articles/hello-world')
+    expect(linkResolver(doc({ type: 'homepage', lang: 'fa-ir' }))).toBe('/fa')
+    expect(linkResolver(doc({ type: 'about', lang: 'fa-ir' }))).toBe(
+      '/fa/about/',
+    )
+    expect(linkResolver(doc({ type: 'contact', lang: 'fa-ir' }))).toBe(
+      '/fa/contact/',
+    )
+  })
+
+  it('does not prefix English (en-us) documents', () => {
+    expect(
+      linkResolver(
+        doc({ type: 'articles', uid: 'hello-world', lang: 'en-us' }),
+      ),
+    ).toBe('/articles/hello-world')
+    expect(linkResolver(doc({ type: 'homepage', lang: 'en-us' }))).toBe('/')
+  })
 })
