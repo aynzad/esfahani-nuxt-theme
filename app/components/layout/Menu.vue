@@ -115,6 +115,7 @@ a {
 @include breakpoint(xs, max) {
   .menu {
     &:not(.big) {
+      --menu-closed-x: -100%;
       display: none;
       display: flex;
       flex-direction: column;
@@ -128,7 +129,7 @@ a {
       top: -100vh;
       justify-content: flex-start;
       transform-origin: 0% 0%;
-      transform: translate(-100%, 0);
+      transform: translate(var(--menu-closed-x), 0);
       // `visibility: hidden` keeps the off-screen links out of the tab order and the
       // accessibility tree on mobile; delayed on close so it doesn't cut the slide-out.
       visibility: hidden;
@@ -161,6 +162,14 @@ a {
           margin: 0;
         }
       }
+    }
+  }
+}
+
+@include lang(fa) {
+  @include breakpoint(xs, max) {
+    .menu:not(.big) {
+      --menu-closed-x: 100%;
     }
   }
 }

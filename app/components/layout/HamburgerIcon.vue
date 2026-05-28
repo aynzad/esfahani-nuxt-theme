@@ -31,7 +31,7 @@ const { t } = useI18n()
   background: transparent;
   padding: 0;
   cursor: pointer;
-  z-index: var(--z-index-logo);
+  display: block;
   position: relative;
   left: 2px;
   top: 2px;
