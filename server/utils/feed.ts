@@ -1,5 +1,10 @@
 import { Feed } from 'feed'
-import { asText, createClient, filter, type RichTextField } from '@prismicio/client'
+import {
+  asText,
+  createClient,
+  filter,
+  type RichTextField,
+} from '@prismicio/client'
 import type { H3Event } from 'h3'
 import { useRuntimeConfig } from '#imports'
 
@@ -9,18 +14,23 @@ type FeedFormat = 'rss' | 'atom' | 'json'
 // Locale → Prismic lang, URL prefix, channel language tag, and the articles-page
 // description (kept in sync with i18n/locales/*.json `seo.articles`; the i18n runtime
 // isn't available in a Nitro route, so the strings live here).
-const LOCALES: Record<Locale, { lang: string, prefix: string, language: string, description: string }> = {
+const LOCALES: Record<
+  Locale,
+  { lang: string; prefix: string; language: string; description: string }
+> = {
   en: {
     lang: 'en-us',
     prefix: '',
     language: 'en',
-    description: 'Articles by Alireza Esfahani on life, software engineering, front-end, and web development.',
+    description:
+      'Articles by Alireza Esfahani on life, software engineering, front-end, and web development.',
   },
   fa: {
     lang: 'fa-ir',
     prefix: '/fa',
     language: 'fa',
-    description: 'نوشته‌های علیرضا اصفهانی درباره زندگی، مهندسی نرم‌افزار، فرانت‌اند و توسعه وب.',
+    description:
+      'نوشته‌های علیرضا اصفهانی درباره زندگی، مهندسی نرم‌افزار، فرانت‌اند و توسعه وب.',
   },
 }
 
@@ -45,8 +55,13 @@ function buildEmptyFeed(locale: Locale, site: string): Feed {
   })
 }
 
-export async function buildFeed(locale: Locale, event?: H3Event): Promise<Feed> {
-  const { public: { apiUrl, siteUrl } } = useRuntimeConfig(event)
+export async function buildFeed(
+  locale: Locale,
+  event?: H3Event,
+): Promise<Feed> {
+  const {
+    public: { apiUrl, siteUrl },
+  } = useRuntimeConfig(event)
   const site = (siteUrl ?? '').replace(/\/$/, '')
   const feed = buildEmptyFeed(locale, site)
 
@@ -63,7 +78,10 @@ export async function buildFeed(locale: Locale, event?: H3Event): Promise<Feed> 
       lang,
       pageSize: MAX_ITEMS,
       page: 1,
-      orderings: { field: 'document.first_publication_date', direction: 'desc' },
+      orderings: {
+        field: 'document.first_publication_date',
+        direction: 'desc',
+      },
     })
 
     let newest: Date | undefined
@@ -78,15 +96,14 @@ export async function buildFeed(locale: Locale, event?: H3Event): Promise<Feed> 
         link: url,
         description: asText(doc.data.article_subtitle as RichTextField),
         date,
-        category: (doc.tags ?? []).map(name => ({ name })),
+        category: (doc.tags ?? []).map((name) => ({ name })),
       })
     }
     // `options` is a public, mutable field of Feed; the channel <updated>/<lastBuildDate>
     // tracks the newest article rather than build time (set post-loop since it's only
     // known after iterating). Revisit if a future feed major makes options read-only.
     if (newest) feed.options.updated = newest
-  }
-  catch (err) {
+  } catch (err) {
     console.warn('[feed] failed to load Prismic content:', err)
   }
 
@@ -94,7 +111,11 @@ export async function buildFeed(locale: Locale, event?: H3Event): Promise<Feed> 
 }
 
 // Backs every route file: build the locale's feed, set the right Content-Type, serialise.
-export async function defineFeedRoute(event: H3Event, locale: Locale, format: FeedFormat): Promise<string> {
+export async function defineFeedRoute(
+  event: H3Event,
+  locale: Locale,
+  format: FeedFormat,
+): Promise<string> {
   const feed = await buildFeed(locale, event)
   if (format === 'json') {
     setHeader(event, 'Content-Type', 'application/feed+json; charset=utf-8')

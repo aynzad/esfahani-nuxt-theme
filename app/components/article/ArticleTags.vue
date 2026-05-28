@@ -1,21 +1,27 @@
 <script setup lang="ts">
 const props = withDefaults(
-  defineProps<{ tags?: string[], noLink?: boolean }>(),
+  defineProps<{ tags?: string[]; noLink?: boolean }>(),
   { tags: () => [], noLink: false },
 )
 
 const localePath = useLocalePath()
 
-const isLastItem = (index: number, array: unknown[]) => index === array.length - 1
+const isLastItem = (index: number, array: unknown[]) =>
+  index === array.length - 1
 </script>
 
 <template>
   <div v-if="props.tags.length" class="tags" :class="{ 'no-link': noLink }">
     #<span v-for="(tag, index) in props.tags" :key="tag" class="tag">
-      <NuxtLink v-if="!noLink" :to="localePath({ name: 'tags-tag', params: { tag } })">
+      <NuxtLink
+        v-if="!noLink"
+        :to="localePath({ name: 'tags-tag', params: { tag } })"
+      >
         {{ tag }}{{ !isLastItem(index, props.tags) ? ' / ' : '' }}
       </NuxtLink>
-      <template v-else>{{ tag }}{{ !isLastItem(index, props.tags) ? ' / ' : '' }}</template>
+      <template v-else
+        >{{ tag }}{{ !isLastItem(index, props.tags) ? ' / ' : '' }}</template
+      >
     </span>
   </div>
 </template>

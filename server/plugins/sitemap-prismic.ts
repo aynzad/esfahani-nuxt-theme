@@ -1,4 +1,8 @@
-import { type Client, createClient, type PrismicDocument } from '@prismicio/client'
+import {
+  type Client,
+  createClient,
+  type PrismicDocument,
+} from '@prismicio/client'
 import type { NitroApp } from 'nitropack/types'
 import type { SitemapSourcesHookCtx, SitemapUrl } from '@nuxtjs/sitemap'
 import { defineNitroPlugin, useRuntimeConfig } from '#imports'
@@ -19,11 +23,13 @@ function toW3CDate(date: string | null | undefined): string | undefined {
 }
 
 // Collect rich-text image URLs from a document (image nodes: `{ type: 'image', url }`).
-function collectImageUrls(value: unknown, found = new Set<string>()): Set<string> {
+function collectImageUrls(
+  value: unknown,
+  found = new Set<string>(),
+): Set<string> {
   if (Array.isArray(value)) {
     for (const item of value) collectImageUrls(item, found)
-  }
-  else if (value && typeof value === 'object') {
+  } else if (value && typeof value === 'object') {
     const node = value as Record<string, unknown>
     if (node.type === 'image' && typeof node.url === 'string') {
       found.add(node.url.split('?')[0]!)
@@ -36,23 +42,24 @@ function collectImageUrls(value: unknown, found = new Set<string>()): Set<string
 async function getSingleSafe(client: Client, type: string, lang: string) {
   try {
     return await client.getSingle(type, { lang })
-  }
-  catch {
+  } catch {
     return null
   }
 }
 
 function newestDate(docs: PrismicDocument[]): string | undefined {
   const times = docs
-    .map(d => new Date(d.last_publication_date).getTime())
-    .filter(t => !Number.isNaN(t))
+    .map((d) => new Date(d.last_publication_date).getTime())
+    .filter((t) => !Number.isNaN(t))
   return times.length ? new Date(Math.max(...times)).toISOString() : undefined
 }
 
 type Alternatives = NonNullable<SitemapUrl['alternatives']>
 
-function langMeta(lang: string): { hreflang: 'en' | 'fa', prefix: string } {
-  return lang === 'en-us' ? { hreflang: 'en', prefix: '' } : { hreflang: 'fa', prefix: '/fa' }
+function langMeta(lang: string): { hreflang: 'en' | 'fa'; prefix: string } {
+  return lang === 'en-us'
+    ? { hreflang: 'en', prefix: '' }
+    : { hreflang: 'fa', prefix: '/fa' }
 }
 
 // hreflang set for a page that exists at the same path in both locales (home, /projects, …).
@@ -68,20 +75,27 @@ function staticAlternatives(path: string, site: string): Alternatives {
   ]
 }
 
-function articleUrl(doc: PrismicDocument, lang: string, site: string): SitemapUrl {
+function articleUrl(
+  doc: PrismicDocument,
+  lang: string,
+  site: string,
+): SitemapUrl {
   const { hreflang, prefix } = langMeta(lang)
-  const images = [...collectImageUrls(doc.data)].map(loc => ({ loc }))
+  const images = [...collectImageUrls(doc.data)].map((loc) => ({ loc }))
 
   // Pair this article with its translations via Prismic's alternate_languages (uids can differ).
   const alternatives: Alternatives = [
     { hreflang, href: `${site}${prefix}/articles/${doc.uid}` },
   ]
-  for (const alt of (doc.alternate_languages ?? [])) {
+  for (const alt of doc.alternate_languages ?? []) {
     if (!alt.uid) continue
     const meta = langMeta(alt.lang)
-    alternatives.push({ hreflang: meta.hreflang, href: `${site}${meta.prefix}/articles/${alt.uid}` })
+    alternatives.push({
+      hreflang: meta.hreflang,
+      href: `${site}${meta.prefix}/articles/${alt.uid}`,
+    })
   }
-  const english = alternatives.find(a => a.hreflang === 'en')
+  const english = alternatives.find((a) => a.hreflang === 'en')
   if (english) alternatives.push({ hreflang: 'x-default', href: english.href })
 
   return {
@@ -97,7 +111,9 @@ function articleUrl(doc: PrismicDocument, lang: string, site: string): SitemapUr
 // Feed Prismic-backed URLs (both locales) into the sitemap at render time.
 export default defineNitroPlugin((nitroApp: NitroApp) => {
   nitroApp.hooks.hook('sitemap:sources', async (ctx) => {
-    const { public: { apiUrl, siteUrl } } = useRuntimeConfig()
+    const {
+      public: { apiUrl, siteUrl },
+    } = useRuntimeConfig()
     if (!apiUrl) return
     const site = (siteUrl ?? '').replace(/\/$/, '')
 
@@ -120,8 +136,18 @@ export default defineNitroPlugin((nitroApp: NitroApp) => {
 
             return [
               // Home & projects have no content source, so no lastmod (not faked).
-              { loc: prefix || '/', changefreq: 'monthly', priority: 0.8, alternatives: staticAlternatives('', site) },
-              { loc: `${prefix}/projects`, changefreq: 'monthly', priority: 0.8, alternatives: staticAlternatives('/projects', site) },
+              {
+                loc: prefix || '/',
+                changefreq: 'monthly',
+                priority: 0.8,
+                alternatives: staticAlternatives('', site),
+              },
+              {
+                loc: `${prefix}/projects`,
+                changefreq: 'monthly',
+                priority: 0.8,
+                alternatives: staticAlternatives('/projects', site),
+              },
               {
                 loc: `${prefix}/articles`,
                 changefreq: 'monthly',
@@ -143,7 +169,7 @@ export default defineNitroPlugin((nitroApp: NitroApp) => {
                 lastmod: toW3CDate(contact?.last_publication_date),
                 alternatives: staticAlternatives('/contact', site),
               },
-              ...articles.map(a => articleUrl(a, lang, site)),
+              ...articles.map((a) => articleUrl(a, lang, site)),
             ]
           }),
         )
@@ -153,8 +179,7 @@ export default defineNitroPlugin((nitroApp: NitroApp) => {
         context: { name: 'prismic:articles', description: 'URLs from Prismic' },
         urls,
       })
-    }
-    catch (err) {
+    } catch (err) {
       console.warn('[sitemap] failed to load Prismic content:', err)
     }
   })

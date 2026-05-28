@@ -67,14 +67,18 @@ $ pnpm build    # production build
 
 Configured in `.env` (see [.env.sample](./.env.sample)):
 
-| Variable                          | Required     | Purpose                                                                        |
-| --------------------------------- | ------------ | ------------------------------------------------------------------------------ |
-| `NUXT_PUBLIC_API_URL`             | yes          | Prismic repository API endpoint                                                |
-| `NUXT_PUBLIC_GITHUB_USERNAME`     | for Projects | GitHub account whose public repos are listed                                   |
-| `NUXT_GITHUB_TOKEN`               | no           | Read-only PAT to lift GitHub's 60 req/hr limit                                 |
-| `NUXT_GEMINI_API_KEY`             | no           | Gemini key to auto-translate Projects into Farsi (empty = Farsi shows English) |
-| `NUXT_GEMINI_MODEL`               | no           | Override Gemini model (default `gemini-2.5-flash`)                             |
-| `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` | no           | GA4 measurement id (`G-XXXX`)                                                  |
+| Variable                          | Required     | Purpose                                                                                  |
+| --------------------------------- | ------------ | ---------------------------------------------------------------------------------------- |
+| `NUXT_PUBLIC_API_URL`             | yes          | Prismic repository API endpoint                                                          |
+| `NUXT_PUBLIC_SITE_URL`            | yes          | Canonical site origin (no trailing slash); powers sitemap, canonical, og:image, hreflang |
+| `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` | no           | GA4 measurement id (`G-XXXX`); legacy `UA-*` values are ignored                          |
+| `NUXT_PUBLIC_PAGE_SIZE`           | no           | Articles per page on listing routes (default `10`)                                       |
+| `NUXT_PUBLIC_IS_STAGING`          | no           | Flag staging deploys, e.g. for robots/noindex toggles (default `false`)                  |
+| `NUXT_PUBLIC_GITHUB_USERNAME`     | for Projects | GitHub account whose public repos are listed                                             |
+| `NUXT_GITHUB_TOKEN`               | no           | Read-only PAT to lift GitHub's 60 req/hr limit                                           |
+| `NUXT_GEMINI_API_KEY`             | no           | Gemini key to auto-translate Projects into Farsi (empty = Farsi shows English)           |
+| `NUXT_GEMINI_MODEL`               | no           | Override Gemini model (default `gemini-2.5-flash`)                                       |
+| `NUXT_OG_IMAGE_SECRET`            | for OG       | Secret used by the OG image endpoint; empty disables dynamic OG images                   |
 
 ### Projects page
 
@@ -99,9 +103,11 @@ Great that you are considering supporting the project. You have a lot of ways to
 
 ## TODO
 
+- [x] Implement projects page
 - [x] Improve SEO and accessibility
 - [x] Add RSS feed (RSS 2.0, Atom, JSON Feed; per-locale).
-- [] Config test packages (like `vitest`) and Add unit test
+- [x] Config test packages (like `vitest`) and Add unit test
+- [ ] Make name, job description, and similar fields dynamic by pulling them from Prismic
 
 ## License
 

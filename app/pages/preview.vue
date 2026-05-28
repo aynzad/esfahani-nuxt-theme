@@ -12,10 +12,12 @@ const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
-    const url = await $prismic.client.resolvePreviewURL({ linkResolver, defaultURL: '/' })
+    const url = await $prismic.client.resolvePreviewURL({
+      linkResolver,
+      defaultURL: '/',
+    })
     await navigateTo(url)
-  }
-  catch (err) {
+  } catch (err) {
     error.value = err instanceof Error ? err.message : String(err)
     console.error('[prismic preview] could not resolve preview URL:', err)
   }
@@ -23,7 +25,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section style="font-family: sans-serif; padding: 2rem; text-align: center; color: #555">
+  <section
+    style="
+      font-family: sans-serif;
+      padding: 2rem;
+      text-align: center;
+      color: #555;
+    "
+  >
     <p v-if="!error">Loading preview…</p>
     <p v-else>Preview could not be resolved: {{ error }}</p>
   </section>

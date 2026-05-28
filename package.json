@@ -25,7 +25,12 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "check": "prettier --check . && pnpm run lint && pnpm run typecheck && pnpm run test",
+    "prepare": "husky"
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.79",
@@ -49,11 +54,18 @@
   "devDependencies": {
     "@nuxt/eslint": "^1.0.0",
     "@nuxt/fonts": "^0.14.0",
+    "@nuxt/test-utils": "^4.0.3",
     "@takumi-rs/core": "^1.5.1",
     "@types/node": "^25.9.1",
+    "@vue/test-utils": "^2.4.10",
     "eslint": "^9.18.0",
+    "happy-dom": "^20.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5",
+    "prettier": "^3.8.3",
     "sass": "^1.83.0",
     "typescript": "^5.6.0",
+    "vitest": "^4.1.7",
     "vue-tsc": "^3.3.2"
   }
 }

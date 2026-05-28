@@ -1,5 +1,7 @@
 <script setup lang="ts">
-interface QuoteItem { text: string }
+interface QuoteItem {
+  text: string
+}
 interface QuoteSliceContent {
   primary: { quote?: QuoteItem[] }
 }

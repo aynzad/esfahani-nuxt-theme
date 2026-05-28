@@ -1,8 +1,5 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{ isBig?: boolean }>(),
-  { isBig: false },
-)
+withDefaults(defineProps<{ isBig?: boolean }>(), { isBig: false })
 
 const localePath = useLocalePath()
 
@@ -51,13 +48,15 @@ const { t } = useI18n()
   transform: translate(-50%, calc(-50% + 15px));
   will-change: transform;
   // Size lags slightly behind so the fade leads the movement; opacity has no delay.
-  transition: font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+  transition:
+    font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
     width 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
     transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
     opacity 0.5s ease-in-out;
 
   &:not(.big) {
-    transition: font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+    transition:
+      font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
       width 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
       transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
       opacity 0.5s ease-in-out;
@@ -72,7 +71,8 @@ const { t } = useI18n()
   opacity: var(--first-letter-opacity-light);
   // Growing into the big logo: the fade starts immediately, the logo grows slightly behind,
   // and the descent (translateY) drops down last so it lags behind the rest of the nav opening.
-  transition: font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
+  transition:
+    font-size 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
     width 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s,
     transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.35s,
     opacity 0.5s ease-in-out;

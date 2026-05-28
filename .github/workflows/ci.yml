@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Typecheck
+        # @nuxtjs/prismic disables itself when `endpoint` is empty, which strips
+        # the `$prismic` type augmentation and breaks `nuxt typecheck`. The URL
+        # is not contacted during typecheck — only its presence is checked.
+        env:
+          NUXT_PUBLIC_API_URL: https://example.cdn.prismic.io/api/v2
+        run: pnpm run typecheck
+
+      - name: Test
+        run: pnpm run test

@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import ArticleTags from './ArticleTags.vue';
+import ArticleTags from './ArticleTags.vue'
 
 const props = withDefaults(
   defineProps<{
-    hasLink?: boolean;
-    id?: string;
-    title: string;
-    subtitle?: string;
-    date: string;
-    readTime?: number;
-    tags?: string[];
+    hasLink?: boolean
+    id?: string
+    title: string
+    subtitle?: string
+    date: string
+    readTime?: number
+    tags?: string[]
     // When set, the title links to this external URL (opens in a new tab) instead of an internal route.
-    externalHref?: string;
+    externalHref?: string
     // Rendered in place of read time (e.g. a project's GitHub star count).
-    stars?: number;
+    stars?: number
     // Render tags as plain text instead of links (used for project topics).
-    noLinkTags?: boolean;
+    noLinkTags?: boolean
     // When set, a "Demo" link (opening in a new tab) is shown in the footer.
-    demoHref?: string;
-    demoLabel?: string;
+    demoHref?: string
+    demoLabel?: string
   }>(),
   {
     hasLink: false,
@@ -31,23 +31,23 @@ const props = withDefaults(
     noLinkTags: false,
     demoHref: undefined,
     demoLabel: 'Demo',
-  }
-);
+  },
+)
 
-const localePath = useLocalePath();
-const { locale } = useI18n();
+const localePath = useLocalePath()
+const { locale } = useI18n()
 
 // External-link arrow, mirrored for RTL (Farsi) so it points away from the text.
-const demoArrow = computed(() => (locale.value === 'fa' ? '↖' : '↗'));
+const demoArrow = computed(() => (locale.value === 'fa' ? '↖' : '↗'))
 
 const firstLetter = (title: string) => {
   const sliced = title
     .replace(/[^A-Za-zآ-ی]/g, '')
     .slice(0, 1)
-    .toUpperCase();
-  if (sliced === 'آ' || sliced === 'ا') return 'الف';
-  return sliced;
-};
+    .toUpperCase()
+  if (sliced === 'آ' || sliced === 'ا') return 'الف'
+  return sliced
+}
 
 const parseDate = (
   isoString: string,
@@ -56,18 +56,18 @@ const parseDate = (
     month: 'long',
     day: 'numeric',
     year: 'numeric',
-  }
+  },
 ) => {
-  const date = new Date(isoString);
+  const date = new Date(isoString)
   // Unpublished drafts (e.g. in Prismic preview) have no publication date — an empty
   // or invalid value would make Intl.DateTimeFormat throw "Invalid time value".
-  if (Number.isNaN(date.getTime())) return '';
-  return new Intl.DateTimeFormat(locales, options).format(date);
-};
+  if (Number.isNaN(date.getTime())) return ''
+  return new Intl.DateTimeFormat(locales, options).format(date)
+}
 
-const formattedDate = computed(() => parseDate(props.date, locale.value));
+const formattedDate = computed(() => parseDate(props.date, locale.value))
 
-const { t } = useI18n();
+const { t } = useI18n()
 </script>
 
 <template>

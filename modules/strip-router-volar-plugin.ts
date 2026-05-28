@@ -15,7 +15,7 @@ export default defineNuxtModule({
         const plugins = tsConfig.vueCompilerOptions?.plugins
         if (Array.isArray(plugins)) {
           tsConfig.vueCompilerOptions!.plugins = plugins.filter(
-            p => p !== 'vue-router/volar/sfc-route-blocks',
+            (p) => p !== 'vue-router/volar/sfc-route-blocks',
           )
         }
       })
