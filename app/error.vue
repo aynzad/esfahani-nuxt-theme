@@ -8,7 +8,8 @@ const { t } = useI18n()
 const errorCode = computed(() => props.error?.statusCode ?? 500)
 
 useHead({
-  title: () => `${errorCode.value} ${t(`error.${errorCode.value}.title`)} :: ${t('home.title')}`,
+  title: () =>
+    `${errorCode.value} ${t(`error.${errorCode.value}.title`)} :: ${t('home.title')}`,
 })
 </script>
 
@@ -18,7 +19,12 @@ useHead({
       <div class="wrapper">
         <span>{{ errorCode }}</span>
         <!-- Decorative flying bird; the 404 is conveyed by the heading and text below. -->
-        <img v-if="errorCode === 404" src="/gonjeshk.gif" alt="" aria-hidden="true">
+        <img
+          v-if="errorCode === 404"
+          src="/gonjeshk.gif"
+          alt=""
+          aria-hidden="true"
+        />
         <h1>{{ t(`error.${errorCode}.title`) }}</h1>
         <p>{{ t(`error.${errorCode}.description`) }}</p>
       </div>

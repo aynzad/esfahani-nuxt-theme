@@ -1,51 +1,51 @@
 <script setup lang="ts">
-import { asHTML, asText } from '@prismicio/client';
+import { asHTML, asText } from '@prismicio/client'
 
-const { $prismic } = useNuxtApp();
-const { locale, t } = useI18n();
-const localePath = useLocalePath();
+const { $prismic } = useNuxtApp()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
 
 const { data: page } = await useAsyncData(
   () => `about-${locale.value}`,
   async () => {
-    const lang = locale.value === 'en' ? 'en-us' : 'fa-ir';
+    const lang = locale.value === 'en' ? 'en-us' : 'fa-ir'
     try {
-      return await $prismic.client.getSingle('about', { lang });
+      return await $prismic.client.getSingle('about', { lang })
     } catch {
-      return null;
+      return null
     }
   },
-  { watch: [locale] }
-);
+  { watch: [locale] },
+)
 
 if (!page.value) {
-  await navigateTo(localePath('/'));
+  await navigateTo(localePath('/'))
 }
 
 const name = computed<string>(() =>
-  page.value ? (asText(page.value.data.name) ?? '') : ''
-);
+  page.value ? (asText(page.value.data.name) ?? '') : '',
+)
 const picture = computed<{ url: string } | null>(
-  () => page.value?.data.picture ?? null
-);
+  () => page.value?.data.picture ?? null,
+)
 const content = computed(() =>
-  page.value ? asHTML(page.value.data.content) : ''
-);
+  page.value ? asHTML(page.value.data.content) : '',
+)
 
 useHead({
   title: () => `${t('about.title')} :: ${t('home.title')}`,
-});
+})
 useSeoMeta({
   description: () => t('seo.about'),
   ogTitle: () => t('about.title'),
   twitterTitle: () => t('about.title'),
   twitterDescription: () => t('seo.about'),
-});
+})
 defineOgImage('Default', {
   title: t('about.title'),
   description: t('seo.about'),
   locale: locale.value,
-});
+})
 </script>
 
 <template>

@@ -20,7 +20,8 @@ const { t } = useI18n()
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       to bottom,
       rgba(245, 245, 245, 1) 0%,
       rgba(245, 245, 245, 0.2) 10%,

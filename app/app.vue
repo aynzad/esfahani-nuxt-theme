@@ -20,14 +20,32 @@ useHead(() => ({
   },
   link: [
     ...(i18nHead.value.link || []),
-    { rel: 'alternate', type: 'application/rss+xml', title: 'Alireza Esfahani — RSS', href: `${feedBase.value}/rss.xml` },
-    { rel: 'alternate', type: 'application/atom+xml', title: 'Alireza Esfahani — Atom', href: `${feedBase.value}/atom.xml` },
-    { rel: 'alternate', type: 'application/feed+json', title: 'Alireza Esfahani — JSON Feed', href: `${feedBase.value}/feed.json` },
+    {
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: 'Alireza Esfahani — RSS',
+      href: `${feedBase.value}/rss.xml`,
+    },
+    {
+      rel: 'alternate',
+      type: 'application/atom+xml',
+      title: 'Alireza Esfahani — Atom',
+      href: `${feedBase.value}/atom.xml`,
+    },
+    {
+      rel: 'alternate',
+      type: 'application/feed+json',
+      title: 'Alireza Esfahani — JSON Feed',
+      href: `${feedBase.value}/feed.json`,
+    },
   ],
   meta: [
     ...(i18nHead.value.meta || []),
     config.public.isStaging
-      ? { name: 'robots', content: 'noindex, nofollow, noarchive, nocache, noimageindex' }
+      ? {
+          name: 'robots',
+          content: 'noindex, nofollow, noarchive, nocache, noimageindex',
+        }
       : { name: 'robots', content: 'index' },
   ],
 }))

@@ -3,16 +3,24 @@ import QuoteSlice from './QuoteSlice.vue'
 import ContentSlice from './ContentSlice.vue'
 import CodeSlice from './CodeSlice.vue'
 
-interface Slice { slice_type: string, primary: Record<string, unknown>, items: Record<string, unknown>[] }
+interface Slice {
+  slice_type: string
+  primary: Record<string, unknown>
+  items: Record<string, unknown>[]
+}
 
 defineProps<{ body: Slice[] }>()
 
 const resolver = (sliceName: string) => {
   switch (sliceName) {
-    case 'quote': return QuoteSlice
-    case 'text': return ContentSlice
-    case 'code': return CodeSlice
-    default: return null
+    case 'quote':
+      return QuoteSlice
+    case 'text':
+      return ContentSlice
+    case 'code':
+      return CodeSlice
+    default:
+      return null
   }
 }
 </script>

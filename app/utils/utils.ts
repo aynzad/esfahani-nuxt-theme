@@ -1,9 +1,14 @@
-import { asHTML, asText, type PrismicDocument, type RichTextField } from '@prismicio/client'
+import {
+  asHTML,
+  asText,
+  type PrismicDocument,
+  type RichTextField,
+} from '@prismicio/client'
 import linkResolver from './link-resolver'
 import type { IArticles } from './types'
 
 export const normalizeArticles = (articles: PrismicDocument[]): IArticles[] =>
-  articles.map(article => ({
+  articles.map((article) => ({
     uid: article.uid ?? '',
     title: asText(article.data.article_title as RichTextField),
     subtitle: asText(article.data.article_subtitle as RichTextField),

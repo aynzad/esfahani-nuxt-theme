@@ -11,7 +11,9 @@ const pageSize = Number(config.public.pageSize) || 10
 const langFor = (l: string) => (l === 'en' ? 'en-us' : 'fa-ir')
 
 // Locale-aware feed: /rss.xml on en, /fa/rss.xml on fa.
-const rssHref = computed(() => (locale.value === 'fa' ? '/fa/rss.xml' : '/rss.xml'))
+const rssHref = computed(() =>
+  locale.value === 'fa' ? '/fa/rss.xml' : '/rss.xml',
+)
 
 const { data, refresh } = await useAsyncData(
   () => `articles-list-${locale.value}`,
@@ -21,7 +23,10 @@ const { data, refresh } = await useAsyncData(
       lang: langFor(locale.value),
       pageSize,
       page: 1,
-      orderings: { field: 'document.first_publication_date', direction: 'desc' },
+      orderings: {
+        field: 'document.first_publication_date',
+        direction: 'desc',
+      },
     })
     return {
       articles: normalizeArticles(response.results),
@@ -109,10 +114,20 @@ defineOgImage('Default', {
         :title="t('articles.subscribe')"
         :aria-label="t('articles.subscribe')"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
           <circle cx="6.18" cy="17.82" r="2.18" />
-          <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83C19.56 11.4 12.6 4.44 4 4.44z" />
-          <path d="M4 10.1v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z" />
+          <path
+            d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83C19.56 11.4 12.6 4.44 4 4.44z"
+          />
+          <path
+            d="M4 10.1v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"
+          />
         </svg>
       </a>
     </footer>

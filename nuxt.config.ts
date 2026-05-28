@@ -22,8 +22,18 @@ export default defineNuxtConfig({
     // `["min max"]` requests the variable-weight range (needed by font-variation-settings);
     // `global` because the theme only references fonts via CSS variables, which the scanner can't see.
     families: [
-      { name: 'Josefin Sans', provider: 'google', weights: ['100 700'], global: true },
-      { name: 'Open Sans', provider: 'google', weights: ['300 800'], global: true },
+      {
+        name: 'Josefin Sans',
+        provider: 'google',
+        weights: ['100 700'],
+        global: true,
+      },
+      {
+        name: 'Open Sans',
+        provider: 'google',
+        weights: ['300 800'],
+        global: true,
+      },
       // `arabic` subset is required or Persian text falls back to a system font.
       {
         name: 'Vazirmatn',
@@ -55,9 +65,7 @@ export default defineNuxtConfig({
     },
   },
 
-  components: [
-    { path: '~/components', pathPrefix: false },
-  ],
+  components: [{ path: '~/components', pathPrefix: false }],
 
   app: {
     head: {
@@ -86,12 +94,31 @@ export default defineNuxtConfig({
         // nuxt-og-image (dynamic images via the Takumi renderer).
       ],
       link: [
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+          sizes: 'any',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32x32.png',
+        },
         { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#C62641' },
         { rel: 'manifest', href: '/site.webmanifest' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16x16.png',
+        },
       ],
     },
   },
@@ -152,7 +179,21 @@ export default defineNuxtConfig({
   mdc: {
     highlight: {
       theme: 'dracula',
-      langs: ['ts', 'js', 'json', 'bash', 'shell', 'vue', 'html', 'css', 'scss', 'yaml', 'md', 'tsx', 'jsx'],
+      langs: [
+        'ts',
+        'js',
+        'json',
+        'bash',
+        'shell',
+        'vue',
+        'html',
+        'css',
+        'scss',
+        'yaml',
+        'md',
+        'tsx',
+        'jsx',
+      ],
     },
   },
 
@@ -169,8 +210,8 @@ export default defineNuxtConfig({
         // Silence only the harmless SOURCEMAP_BROKEN warning from Nuxt's preload polyfill.
         onwarn(warning, defaultHandler) {
           if (
-            warning.code === 'SOURCEMAP_BROKEN'
-            && warning.plugin === 'nuxt:module-preload-polyfill'
+            warning.code === 'SOURCEMAP_BROKEN' &&
+            warning.plugin === 'nuxt:module-preload-polyfill'
           ) {
             return
           }

@@ -1,1 +1,2 @@
 setups.@nuxtjs/prismic="5.3.0"
+setups.@nuxt/test-utils="4.0.3"

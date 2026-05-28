@@ -12,9 +12,12 @@ const { data: article } = await useAsyncData(
   async () => {
     const lang = locale.value === 'en' ? 'en-us' : 'fa-ir'
     try {
-      return await $prismic.client.getByUID('articles', String(route.params.id), { lang })
-    }
-    catch {
+      return await $prismic.client.getByUID(
+        'articles',
+        String(route.params.id),
+        { lang },
+      )
+    } catch {
       return null
     }
   },
@@ -26,11 +29,17 @@ if (!article.value) {
 }
 
 const uid = computed(() => article.value?.uid ?? '')
-const title = computed<string>(() => (article.value ? asText(article.value.data.article_title) ?? '' : ''))
-const subtitle = computed<string>(() => (article.value ? asText(article.value.data.article_subtitle) ?? '' : ''))
+const title = computed<string>(() =>
+  article.value ? (asText(article.value.data.article_title) ?? '') : '',
+)
+const subtitle = computed<string>(() =>
+  article.value ? (asText(article.value.data.article_subtitle) ?? '') : '',
+)
 const date = computed(() => article.value?.first_publication_date ?? '')
 const tags = computed(() => article.value?.tags ?? [])
-const readTime = computed<number | undefined>(() => article.value?.data.read_time)
+const readTime = computed<number | undefined>(
+  () => article.value?.data.read_time,
+)
 const body = computed(() => article.value?.data.body ?? [])
 
 useHead({

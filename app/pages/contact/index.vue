@@ -11,8 +11,7 @@ const { data: page } = await useAsyncData(
     const lang = locale.value === 'en' ? 'en-us' : 'fa-ir'
     try {
       return await $prismic.client.getSingle('contact', { lang })
-    }
-    catch {
+    } catch {
       return null
     }
   },
@@ -23,7 +22,9 @@ if (!page.value) {
   await navigateTo(localePath('/'))
 }
 
-const content = computed(() => (page.value ? asHTML(page.value.data.content) : ''))
+const content = computed(() =>
+  page.value ? asHTML(page.value.data.content) : '',
+)
 
 useHead({
   title: () => `${t('contact.title')} :: ${t('home.title')}`,

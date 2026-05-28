@@ -1,25 +1,26 @@
 <script setup lang="ts">
-import type { RichTextField } from '@prismicio/client';
-import { toHtml } from '~/utils/utils';
+import type { RichTextField } from '@prismicio/client'
+import { toHtml } from '~/utils/utils'
 
 interface ContentSliceItem {
-  text: RichTextField;
+  text: RichTextField
 }
 interface ContentSliceContent {
-  items: ContentSliceItem[];
+  items: ContentSliceItem[]
 }
 
-defineProps<{ content: ContentSliceContent }>();
+defineProps<{ content: ContentSliceContent }>()
 </script>
 
 <template>
   <div class="content-section content">
-    <!-- eslint-disable-next-line vue/no-v-html -->
+    <!-- eslint-disable vue/no-v-html -->
     <div
       v-for="(items, index) in content.items"
       :key="index"
       v-html="toHtml(items.text)"
     />
+    <!-- eslint-enable vue/no-v-html -->
   </div>
 </template>
 

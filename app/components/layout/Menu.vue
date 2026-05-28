@@ -11,8 +11,12 @@ const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 
-const switchLocaleTo = computed<'fa' | 'en'>(() => (locale.value === 'fa' ? 'en' : 'fa'))
-const switchLocaleLang = computed(() => (switchLocaleTo.value === 'fa' ? 'fa-IR' : 'en-US'))
+const switchLocaleTo = computed<'fa' | 'en'>(() =>
+  locale.value === 'fa' ? 'en' : 'fa',
+)
+const switchLocaleLang = computed(() =>
+  switchLocaleTo.value === 'fa' ? 'fa-IR' : 'en-US',
+)
 </script>
 
 <template>
@@ -29,7 +33,9 @@ const switchLocaleLang = computed(() => (switchLocaleTo.value === 'fa' ? 'fa-IR'
       <NuxtLink :to="localePath('/projects')">
         {{ t('menu.projects') }}
       </NuxtLink>
-      <a href="https://github.com/aynzad" rel="me noopener">{{ t('menu.github') }}</a>
+      <a href="https://github.com/aynzad" rel="me noopener">{{
+        t('menu.github')
+      }}</a>
     </div>
     <div class="second">
       <NuxtLink :to="localePath('/about')">{{ t('menu.about') }}</NuxtLink>
@@ -126,7 +132,8 @@ a {
       // `visibility: hidden` keeps the off-screen links out of the tab order and the
       // accessibility tree on mobile; delayed on close so it doesn't cut the slide-out.
       visibility: hidden;
-      transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      transition:
+        transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
         visibility 0s linear 0.5s;
       // On the darker mobile-menu gray, --primary-dark is only ~4.16:1; use the AA-safe red.
       a:hover {
@@ -135,7 +142,8 @@ a {
       &.open {
         top: 0;
         visibility: visible;
-        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+        transition:
+          transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
           visibility 0s linear 0s;
         transform: translate(0, 0);
       }

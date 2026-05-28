@@ -14,8 +14,10 @@ const isHome = computed(() => {
 // Currently-visible focusable elements inside the open overlay (logo, close button, nav links).
 const getFocusables = () =>
   Array.from(
-    container.value?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [],
-  ).filter(el => el.offsetParent !== null)
+    container.value?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled])',
+    ) ?? [],
+  ).filter((el) => el.offsetParent !== null)
 
 const setBodyScrollLocked = (locked: boolean) => {
   if (import.meta.client) document.body.style.overflowY = locked ? 'hidden' : ''
@@ -25,7 +27,9 @@ const openMenu = () => {
   setBodyScrollLocked(true)
   isOpen.value = true
   nextTick(() => {
-    const link = container.value?.querySelector<HTMLElement>('#primary-navigation a[href]')
+    const link = container.value?.querySelector<HTMLElement>(
+      '#primary-navigation a[href]',
+    )
     link?.focus()
   })
 }
@@ -54,15 +58,17 @@ const onKeydown = (event: KeyboardEvent) => {
   if (event.shiftKey && active === first) {
     event.preventDefault()
     last.focus()
-  }
-  else if (!event.shiftKey && active === last) {
+  } else if (!event.shiftKey && active === last) {
     event.preventDefault()
     first.focus()
   }
 }
 
 // Close (without stealing focus) whenever navigation occurs.
-watch(() => route.path, () => closeMenu())
+watch(
+  () => route.path,
+  () => closeMenu(),
+)
 </script>
 
 <template>
@@ -74,7 +80,12 @@ watch(() => route.path, () => closeMenu())
   >
     <div class="nav" :class="{ top: !isHome }">
       <Logo :is-big="isHome" />
-      <HamburgerIcon ref="hamburger" :is-open="isOpen" :is-show="!isHome" @click="toggleMenu" />
+      <HamburgerIcon
+        ref="hamburger"
+        :is-open="isOpen"
+        :is-show="!isHome"
+        @click="toggleMenu"
+      />
       <div v-if="isHome">
         <h1 class="title">{{ t('home.title') }}</h1>
         <h2 class="subtitle">{{ t('home.subtitle') }}</h2>

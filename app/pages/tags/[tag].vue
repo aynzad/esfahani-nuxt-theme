@@ -62,7 +62,8 @@ const loadMore = async (nextPage = 1) => {
 }
 
 useHead({
-  title: () => `${t('tags.title', { tag: tagParam.value })} :: ${t('home.title')}`,
+  title: () =>
+    `${t('tags.title', { tag: tagParam.value })} :: ${t('home.title')}`,
 })
 useSeoMeta({
   description: () => t('seo.tags', { tag: tagParam.value }),

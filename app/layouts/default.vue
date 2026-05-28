@@ -27,10 +27,12 @@ const { t } = useI18n()
   --text-main: #2b4338;
   --text-light: #4e5d56;
   --text-bg: #ffe0e0;
-  --main-font: 'Josefin Sans', 'Vazirmatn', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --text-font: 'Open Sans', 'Vazirmatn', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --main-font:
+    'Josefin Sans', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --text-font:
+    'Open Sans', 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   --background-main: #f5f5f5;
   --background-mobile: #cecdcd;
   --weight-light: 200;
