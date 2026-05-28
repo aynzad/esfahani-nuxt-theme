@@ -32,6 +32,9 @@ const { t } = useI18n()
   padding: 0;
   cursor: pointer;
   display: block;
+  // Keep the toggle above the fixed mobile menu overlay (--z-index-mobile),
+  // otherwise the open menu covers the X and it can't be tapped.
+  z-index: var(--z-index-logo);
   position: relative;
   left: 2px;
   top: 2px;
