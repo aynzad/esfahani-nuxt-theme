@@ -27,6 +27,11 @@ jobs:
         run: pnpm run lint
 
       - name: Typecheck
+        # @nuxtjs/prismic disables itself when `endpoint` is empty, which strips
+        # the `$prismic` type augmentation and breaks `nuxt typecheck`. The URL
+        # is not contacted during typecheck — only its presence is checked.
+        env:
+          NUXT_PUBLIC_API_URL: https://example.cdn.prismic.io/api/v2
         run: pnpm run typecheck
 
       - name: Test
